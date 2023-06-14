@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>relatorios SIGMO</title>
+    
+    
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link rel="stylesheet" href="./css/cabecalho.css">
+    <link rel="stylesheet" href="./css/relatoriosPage01.css">
+    <link rel="stylesheet" href="./css/relatorio_matriz_ocupacional.css">
+    
+    
+    <script src="./js/index.js" defer></script>
+
+</head>
+<body>
+    
+    <header class="cabecalho">
+        <img height="110px" src="./img/icon_sistema.png" alt="">
+    </header>
+    <div class="wrapingApp">
+        <div class="leftBar">
+            <span onclick="toggleBarLeft()" class="btnFecharBarra"> <p style="font-size: 14px;">Esconder</p> <i class="uil uil-angle-left-b"></i></span>
+            <span onclick="irToHome()" class="optionBar"> <p style="font-size: 14px;">Início</p> <i class="uil uil-home"></i></span>
+            <span class="optionBar">Opção 01</span>
+            <span class="optionBar">Opção 01</span>
+            <span class="optionBar">Opção 02</span>
+            <span class="optionBar">Opção 03</span>
+            <span class="optionBar">Opção 04</span>
+            <span class="optionBar">Opção 05</span>
+            <span class="optionBar">Opção 06</span>
+            <span class="optionBar">Opção 07</span>
+            <a style="font-style: none; text-decoration: none;" class="spanOptionRelatorio" href="./relatorios"> <img src="./img/icon_relatorios.png" style="margin-right: 5px;" width="15px" alt=""> Relatórios</a>
+        </div>
+        <div  onclick="toggleBarLeft()" class="menuleftbar"><i class="uil uil-draggabledots"></i></div>
+
+        <div class="bodyappRelatorios">
+            <div class="principalRelatorios">
+
+                <span class="titlePage01Relatorio">
+                    <span class="marcadorTitle"></span> <h3>Relatórios e Matrizes</h3>
+                </span>
+                <p style="margin-left: 40px;">Matriz Ocupacional</p>
+                <span class="linhaSeparadora"></span>
+
+                <div class="contentFiltros">
+                    <div  style="display: inline-flex; padding-left:15px;"> <i class="uil uil-filter"></i> <h3>filtros</h3></div>
+                    
+                    <div class="wrappingFiltros">
+                        
+                        <!-- FILTRO PERÍODO - OBRIATÓRIO -->
+                        <div class="filterUnidade">   
+                            <span valorEscolhido="0" onclick="abrirSelect(0, this)" class="cabecalhoFilter"> <p style="color:crimson">*</p> <p class="value_select">selecione uma período</p> <i class="uil uil-angle-down angle_select"></i> </span>
+                            <span class="listaOptions">
+                                <!-- <span onclick="selecionaSelect(0, this)"  class="optionInList">2022/1 - de xx até yy</span>
+                                <span onclick="selecionaSelect(0, this)" class="optionInList">2023/1 - de xx até yy</span>
+                                <span onclick="selecionaSelect(0, this)" class="optionInList">2023/2 - de xx até yy</span> -->
+                            </span>
+
+                        </div>
+
+                        
+                        <!-- <div class="filterUnidade"> 
+                         FILTRO UNIDADE 
+                            <span onclick="abrirSelect(1, this)" class="cabecalhoFilter"> <p class="value_select">selecione uma unidade</p> <i class="uil uil-angle-down angle_select"></i> </span>
+                            <span class="listaOptions">
+                                <span onclick="selecionaSelect(1, this)" class="optionInList">Todas</span>
+                                <span onclick="selecionaSelect(1, this)" class="optionInList">Escola Normal Superior</span>
+                                <span onclick="selecionaSelect(1, this)" class="optionInList">Escola Superior de Ciências da Saúde</span>
+                                <span onclick="selecionaSelect(1, this)" class="optionInList">Escola Superior de Tecnoloia</span>
+                                <span onclick="selecionaSelect(1, this)" class="optionInList">Escola de Direito</span>
+                                <span onclick="selecionaSelect(1, this)" class="optionInList">Escola de Superior de Ciências Sociais</span>
+                            </span>
+                        </div>-->
+
+                        <!-- <div class="filterUnidade"> 
+                             FILTRO CURSO 
+                                <span onclick="abrirSelect(2, this)" class="cabecalhoFilter"> <p class="value_select">selecione um cursos</p> <i class="uil uil-angle-down angle_select"></i> </span>
+                                <span class="listaOptions">
+                                    <span  onclick="selecionaSelect(3, this)" class="optionInList">Agronomia</span>
+                                    <span  onclick="selecionaSelect(3, this)" class="optionInList">Ciências da Computação</span>
+                                    <span  onclick="selecionaSelect(3, this)" class="optionInList">Ciências Contábeis</span>
+                                    <span  onclick="selecionaSelect(3, this)" class="optionInList">Enfermagem</span>
+                                    <span  onclick="selecionaSelect(3, this)" class="optionInList">Engenharia Florestal</span>
+                                    <span  onclick="selecionaSelect(3, this)" class="optionInList">Medicina</span>
+                                </span>
+                        </div>-->
+
+                       <!-- <div class="filterUnidade">
+                            FILTRO TURNO 
+                                <span onclick="abrirSelect(3, this)" class="cabecalhoFilter"> <p class="value_select">selecione um turno</p> <i class="uil uil-angle-down angle_select"></i> </span>
+                                <span class="listaOptions">
+                                    <span onclick="selecionaSelect(2, this)" class="optionInList">Matutino</span>
+                                    <span onclick="selecionaSelect(2, this)" class="optionInList">Vespertino</span>
+                                    <span onclick="selecionaSelect(2, this)" class="optionInList">Noturno</span>
+                                    <span onclick="selecionaSelect(2, this)" class="optionInList">Interal</span>
+                                </span>
+                        </div>-->
+
+                        
+
+                    </div>
+                </div>
+                
+                <div class="optionsDownload">
+                    <span class="optionDownlad">
+                        <span class="pretobranco"><img height="30px"   src="./img/icon_pb_excel.png" alt="icon_preto_e_branco_excel" title="downlaod-não-disponível"> <p style="font-size:12px;">excel</p></span> 
+                        <span  onclick="baixarEmFormatoExcel()"  class="colorido"><img   height="30px"  src="./img/icon_col_excel.png" alt="icon_colorido_excel" title="downlaod-formato-excel"> <p style="font-size:12px;">excel</p></span> 
+                    </span>
+
+                    <!--  
+                    <span class="optionDownlad">
+                        <span class="pretobranco"><img height="30px"   src="./img/icon_pb_pdf.png" alt="icon_preto_e_branco_pdf" title="downlaod-não-disponível"> <p style="font-size:12px;">pdf</p></span> 
+                        <span onclick="baixarEmFormatoPdf()" class="colorido"><img  height="30px"  src="./img/icon_colorido_pdf.png" alt="icon_colorido_pdf" title="downlaod-formato-pdf"> <p style="font-size:12px;">pdf</p></span> 
+                    </span> 
+                    
+                    -->
+
+                    <span class="optionDownlad">
+                        <span class="pretobranco"><img height="30px"   src="./img/icon_pb_web.png" alt="icon_preto_e_branco_pdf" title="downlaod-não-disponível"> <p style="font-size:12px;">web</p></span> 
+                        <span class="colorido"> <a id="botaoAbrirMatriz" href="/matriz_ocupacional?periodo=1" target="_blank" rel="noopener noreferrer"><img  height="30px"  src="./img/icon_col_web.png" alt="icon_colorido_pdf" title="downlaod-formato-pdf"> <p style="font-size:12px;">web</p> </a> </span> 
+                    </span>
+
+                </div>
+
+            </div>
+            <div class="footer"><img src="./img/logoPrograd.png" height="30px" alt="logo-prograd"></div>
+        </div>
+           
+    </div>
+
+</body>
+<script>
+
+    (async()=>{
+        fetch('/buscarPeriodos', {
+        method: 'POST',
+    }).then(async(value)=>{
+        value.json().then(async(jsonData)=>{
+            const status = jsonData.status;
+            if(status){
+                const periodos = jsonData.periodos;
+                console.log(periodos)
+                await inserirPeríodos(periodos);
+            }else{
+                alert('Erro no processamento dos dados!');
+            }
+        })
+    }).catch((err)=>{
+        console.log(err)
+    });
+    })();
+
+    async function inserirPeríodos(periodos){
+        let htmlperiodos = '';
+        periodos.forEach((periodo)=>{
+            let diaInicio = new Date(periodo.data_inicio).getDate();
+            if(diaInicio < 10){
+                diaInicio = '0'+diaInicio;
+            }
+            let mesInicio = new Date(periodo.data_inicio).getMonth();
+            if(mesInicio < 10){
+                mesInicio = '0'+mesInicio;
+            }
+            let anoInicio = new Date(periodo.data_inicio).getFullYear();
+            let diaFim = new Date(periodo.data_fim).getDate();
+            if(diaFim < 10){
+                diaFim = '0'+diaFim;
+            }
+            let mesFim = new Date(periodo.data_fim).getMonth();
+            if(mesFim < 10){
+                mesFim = '0'+mesFim;
+            }
+            let anoFim = new Date(periodo.data_fim).getFullYear();
+
+            htmlperiodos = htmlperiodos + `<span onclick="selecionaSelect(0, this, ${periodo.codigo})" class="optionInList"> ${periodo.ano_semestre} - de ${diaInicio}/${mesInicio}/${anoInicio} até ${diaFim}/${mesFim}/${anoFim}</span>`
+        });
+
+        document.querySelector('.listaOptions').innerHTML = htmlperiodos;
+    }
+
+    
+</script>
+</html>

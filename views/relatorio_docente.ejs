@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>relatorios SIGMO</title>
+    
+    
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link rel="stylesheet" href="./css/cabecalho.css">
+    <link rel="stylesheet" href="./css/relatoriosPage01.css">
+    <link rel="stylesheet" href="./css/relatorio_matriz_ocupacional.css">
+    <link rel="stylesheet" href="./css/relatorio_docente.css">
+    
+    
+    <script src="./js/index.js" defer></script>
+
+</head>
+<body>
+
+    <div id="bgModal">
+
+        <div class="modalInfoBusca">
+            <div class="titleModal">
+                <h4>Métodos de busca</h4>
+                <i onclick="fecharModalInfo()" class="uil uil-times"></i>
+            </div>
+
+            <div class="contentextModalInfo">
+                <h5 style="margin-left:5px; margin-bottom: 3px;">Formas de busca</h5>
+                <p>O metodo de busca dos <a href="">professores</a>  pode ser feito por <a href="">nome</a>, <a href="">cpf</a> e <a href="">matrícula</a>. </p>
+                <p>Basta informar um dos dados acima, dentro do campo de pesquisa, e clicar na lupa (<i style="font-weight: bold;" class="uil uil-search"></i>)   </p>
+            </div>
+        </div>
+
+    </div>
+    
+    <header class="cabecalho">
+        <img height="110px" src="./img/icon_sistema.png" alt="">
+    </header>
+    <div class="wrapingApp">
+        <div class="leftBar">
+            <span onclick="toggleBarLeft()" class="btnFecharBarra"> <p style="font-size: 14px;">Esconder</p> <i class="uil uil-angle-left-b"></i></span>
+            <span onclick="irToHome()" class="optionBar"> <p style="font-size: 14px;">Início</p> <i class="uil uil-home"></i></span>
+            <span class="optionBar">Opção 01</span>
+            <span class="optionBar">Opção 01</span>
+            <span class="optionBar">Opção 02</span>
+            <span class="optionBar">Opção 03</span>
+            <span class="optionBar">Opção 04</span>
+            <span class="optionBar">Opção 05</span>
+            <span class="optionBar">Opção 06</span>
+            <span class="optionBar">Opção 07</span>
+            <a style="font-style: none; text-decoration: none;" class="spanOptionRelatorio" href="./relatorios.html"> <img src="./img/icon_relatorios.png" style="margin-right: 5px;" width="15px" alt=""> Relatórios</a>
+        </div>
+        <div  onclick="toggleBarLeft()" class="menuleftbar"><i class="uil uil-draggabledots"></i></div>
+
+        <div class="bodyappRelatorios">
+            <div class="principalRelatorios">
+
+                <span class="titlePage01Relatorio">
+                    <span class="marcadorTitle"></span> <h3>Relatórios e Matrizes</h3>
+                </span>
+                <p style="margin-left: 40px;">Docentes</p>
+                <span class="linhaSeparadora"></span>
+
+                <div class="contentFiltros">
+                    <!-- <div  style="display: inline-flex; padding-left:15px;"> <i class="uil uil-filter"></i> <h3>filtros</h3></div> -->
+                    
+                    <div class="wrappingSearch">
+                        <div class="searchDiv">
+                            <input type="text" name="search" id="search" placeholder="busque um professor">
+                            <i onclick="buscarProfessores()" class="uil uil-search"></i>
+                            <span onclick="mostrarInfoBusca()" style="margin-right: 7px; cursor: pointer;" > <img  src="./img/iconInfo.png" width="20px" alt="icon_info_i" title="infocação da pesquisa"></i></span>
+                        </div>
+
+                        <div class="wrappingTable">
+                            <div class="optionTable">
+                                <span> total de <p id="totalBusca"></p> professores encontrados</span>
+                            </div>
+                            <div class="contetTable">
+                                <table id="tabela_professor_relatorio">
+                                    <thead><tr> <th>Cpf</th> <th>Nome</th> <th>Matrícula</th> <th>carga_horária</th> <th>Unidade_lotação</th> <th>curso_lotação</th> <th>telefone</th> <th>e-mail</th> <th>status</th> <th>função_gratificada</th> </tr></thead>
+                                    <tbody id="corpoTabela">
+                                        <!-- <tr class="linhaTabela"> <td>03842348282</td> <td>lucas dos santos marques</td> <td>130110230</td> <td>40h</td> <td>ESO</td>  <td>Pedagogia Dogmática</td> <td>92988230420</td> <td>lsm.mat18@uea.edu.br</td> <td>afastado para doutorado</td> <td>Pró-Reior de Assuntos Aleatórios</td> </tr> -->
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display:none" class="optionsDownload">
+                    <span class="optionDownlad">
+                        <span class="pretobranco"><img height="30px"   src="./img/icon_pb_excel.png" alt="icon_preto_e_branco_excel" title="downlaod-não-disponível"> <p style="font-size:12px;">excel</p></span> 
+                        <span onclick="baixarEmFormatoExcel()"  class="colorido"><img  height="30px"  src="./img/icon_col_excel.png" alt="icon_colorido_excel" title="downlaod-formato-excel"> <p style="font-size:12px;">excel</p></span> 
+                    </span>
+
+                    <span class="optionDownlad">
+                        <span class="pretobranco"><img height="30px"   src="./img/icon_pb_pdf.png" alt="icon_preto_e_branco_pdf" title="downlaod-não-disponível"> <p style="font-size:12px;">pdf</p></span> 
+                        <span onclick="baixarEmFormatoPdf()" class="colorido"><img  height="30px"  src="./img/icon_colorido_pdf.png" alt="icon_colorido_pdf" title="downlaod-formato-pdf"> <p style="font-size:12px;">pdf</p></span> 
+                    </span>
+
+                    <span class="optionDownlad">
+                        <span class="pretobranco"><img height="30px"   src="./img/icon_pb_web.png" alt="icon_preto_e_branco_pdf" title="downlaod-não-disponível"> <p style="font-size:12px;">web</p></span> 
+                        <span onclick="visualizarNaWeb()" class="colorido"><img  height="30px"  src="./img/icon_col_web.png" alt="icon_colorido_pdf" title="downlaod-formato-pdf"> <p style="font-size:12px;">web</p></span> 
+                    </span>
+
+                </div>
+
+            </div>
+            <div class="footer"><img src="./img/logoPrograd.png" height="30px" alt="logo-prograd"></div>
+        </div>
+           
+    </div>
+
+</body>
+<script>
+    function mostrarInfoBusca(){
+        document.querySelector('#bgModal').classList.add('active')
+        document.querySelector('.modalInfoBusca').classList.add('active')
+    }
+
+    function fecharModalInfo(){
+        document.querySelector('#bgModal').classList.remove('active')
+        document.querySelector('.modalInfoBusca').classList.remove('active')
+    }
+
+
+    async function buscarProfessores (){
+
+        const barraBusca = document.querySelector('#search');
+
+        if(barraBusca.value === '' || barraBusca.value === null || barraBusca.value === undefined){
+            alert('pesquise por cpf, matrícula e nome')
+            return false;
+        }
+
+
+        fetch('/apiProf', {
+            method: 'GET',
+        }).then(async (value) => {
+            const dados = await value.json();
+            await povoaTabela(dados);
+            console.log(dados)
+        }).catch((value) => {
+            console.log(value)    ;
+        })
+    }
+
+    async function povoaTabela(dados){
+        
+        setTimeout(()=>{
+            const corpotabela = document.querySelector('#corpoTabela');
+            corpotabela.innerHTML = '';
+            let total = '';
+            dados.professor.forEach((dado) => {
+                total = total + `<tr onclick="abrirRelatorioDocente(${dado.id})" class="linhaTabela"> <td>${dado.cpf}</td> <td>${dado.nome}</td> <td>${dado.matricula}</td> <td>${dado.carga_horaria}</td> <td>${dado.unidade_lotacao}</td> <td>${dado.curso_lotacao}</td> <td>${dado.telefone}</td> <td>${dado.email}</td> <td>-</td> <td>-</td> </tr>`
+            })
+            corpotabela.innerHTML = total;
+            document.querySelector('#totalBusca').innerText = dados.professor.length;
+            document.querySelector('.optionTable span').classList.add('active')
+            document.querySelector('.contetTable').classList.add('active')
+            
+        },2000)
+
+
+        
+    }
+
+    function abrirRelatorioDocente(id){
+        window.open(
+        './matriz_docente.ejs',
+        '_blank' // <- This is what makes it open in a new window.
+      );
+    }
+
+</script>
+</html>

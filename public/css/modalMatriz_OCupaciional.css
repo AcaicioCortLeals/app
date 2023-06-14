@@ -1,0 +1,443 @@
+#bgModal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: none   ;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+}
+
+
+#bgModal.active{
+    display: flex;
+}
+
+.modaloptoinUnidade{
+    display: none;
+    flex-direction: column;
+    width: 340px;
+    height: 320px;
+    background-color: white;
+    box-shadow: 0 0 4px 0 gray;
+}
+
+.modaloptoinUnidade.active{
+    display: flex;
+}
+
+.titleModal{
+    margin: 4px 0 2px 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 6px;
+}
+
+.titleModal i{
+    cursor:pointer
+}
+
+.titleModal i:hover{
+    color: crimson;
+}
+
+.optionsUnidades{
+    width: 100%;
+    max-height:300px;
+    overflow-y: scroll;
+}
+
+.optionsUnidades span{
+    width: 90%;
+    height: 34px;
+    margin: 6px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 0px 2px 5px -2px black;
+    cursor: pointer;
+    transition: all ease-out .15s;
+}
+
+.optionsUnidades span:hover{
+    background-color: limegreen;
+    color: white;
+}
+
+
+/* MODAL UNIDADE  */
+
+.modalOptionCurso{
+    display: none;
+    flex-direction: column;
+    width: 340px;
+    height: 320px;
+    background-color: white;
+    box-shadow: 0 0 4px 0 gray;
+}
+
+.modalOptionCurso.active{
+    display: flex;
+}
+
+
+.modalOptionCurso span{
+    width: 90%;
+    height: 34px;
+    margin: 6px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 0px 2px 5px -2px black;
+    cursor: pointer;
+    transition: all ease-out .15s;
+}
+
+.modalOptionCurso span:hover{
+    background-color: limegreen;
+    color: white;
+}
+
+
+/* MODAL DE TURNOS */
+
+.modalOptionTurno{
+    display: none;
+    flex-direction: column;
+    width: 340px;
+    height: 320px;
+    background-color: white;
+    box-shadow: 0 0 4px 0 gray;
+}
+
+.modalOptionTurno.active{
+    display: flex;
+}
+
+
+.modalOptionTurno span{
+    width: 90%;
+    height: 34px;
+    margin: 6px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 0px 2px 5px -2px black;
+    cursor: pointer;
+    transition: all ease-out .15s;
+}
+
+.modalOptionTurno span:hover{
+    background-color: limegreen;
+    color: white;
+}
+
+
+
+
+/* MODAL DE STATUS CH */
+
+.modalOptionCH{
+    display: none;
+    flex-direction: column;
+    width: 340px;
+    height: 320px;
+    background-color: white;
+    box-shadow: 0 0 4px 0 gray;
+}
+
+.modalOptionCH.active{
+    display: flex;
+}
+
+
+.modalOptionCH span{
+    width: 90%;
+    height: 34px;
+    margin: 6px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 0px 2px 5px -2px black;
+    cursor: pointer;
+    transition: all ease-out .15s;
+}
+
+.modalOptionCH span:hover{
+    background-color: limegreen;
+    color: white;
+}
+
+
+/*MODAL TURMA*/
+.modalBuscaDisciplina{
+    width: 0;
+    height: 0;
+    background-color: white;
+    box-shadow: 0 0 4px 0 gray;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border-radius: 15px;
+    transition: all ease-out .3s;
+    transition-delay: .2s;
+    overflow: hidden;
+}
+
+@keyframes abrir {
+    0%{
+        height: 0;
+        width: 0;
+    }
+    100%{
+        height: 140px;
+        width: 400px;
+    }
+}
+
+.modalBuscaTurma.active{
+    animation: abrir .3s ease-in-out 0s;
+}
+
+.titleModalDisciplina{
+    padding: 8px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.titleModalDisciplina i{
+    cursor: pointer;
+}
+
+.titleModalDisciplina i:hover{
+    color: crimson;
+}
+
+.contentInputBuscaDisciplina{
+    width: 90%;
+    margin: 7px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#buscaDisciplina{
+    width: 300px;
+    height: 40px;
+    padding-left: 5px;
+    border: 1px solid gray;
+    /* border-radius: 37px; */
+    outline: none;
+    background-color: transparent;
+    border-right: 0;
+}
+
+#buscaDisciplina::placeholder{
+    color: rgb(0, 0, 0);
+    font-style: italic;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.wrappIconSearch{
+    width: 40px;
+    height: 40px;
+    background-color: limegreen;
+    border: 1px solid limegreen;
+    color: white;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.wrappIconSearch:hover{
+    background-color: rgb(29, 165, 29);
+    border: 1px solid rgb(29, 165, 29);
+}
+
+.spanResultadosEncontradosDiscplina{
+    width: 100%;
+    margin-top: 4px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+
+.modalBuscaTurmas{
+    width: 80%;
+    height: 400px;
+    background-color: white;
+    border-radius: 4px;
+    display: none;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    overflow-y: scroll;
+
+}
+
+.modalBuscaTurmas.active{
+    display: block;
+
+}
+
+.titleModalTurma{
+    width: 100%;
+    padding: 2px 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    background-color: #0c7b90;
+    color: white;
+}
+
+.titleModalTurma i{
+    cursor: pointer;
+}
+.titleModalTurma i:hover{
+    color: crimson;
+}
+
+.contentSearchTurma{
+    width: 100%;
+    /* height: 37px; */
+    margin-top: 5px;
+    display: flex;
+}
+
+.wrappingTurma{
+    width: 70%;
+    height: 45px;
+    margin: 8px auto;
+    box-shadow: 0 0 10px 0px lightgray;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 37px;
+}
+
+.wrappingTurma span{
+    position: relative;
+    left: 15px;
+}
+.wrappingTurma .inputSearchTurma{
+    width: 100%;
+    border: none;
+    outline: none;
+    height: 100%;
+    background-color: transparent;
+    padding-left: 30px;
+}
+
+.wrappingTurma button{
+    position: relative;
+    right: 7px;
+    width: 76px;
+    height: 30px;
+    border-radius: 30px;
+    background-color: #0c7b90;
+    color: white;
+    text-align: center;
+    border: none;
+    
+}
+.wrappingTurma button:hover{
+    background-color: color(xyz-d50 0.12 0.18 0.26);
+    cursor: pointer;
+
+}
+
+.listTurmas{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.infoTurmaInModalTurmas{
+    width: 98%;
+    height: 45px;
+    background-color: #0c7b90;
+    color: white;
+    /* box-shadow: 0 0 10px 0 lightgray; */
+    margin: 5px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    cursor: pointer;
+}
+
+
+.infoTurmaInModalTurmas:hover{
+    background-color:  color(xyz-d50 0.12 0.18 0.26);
+
+}
+
+.infoTurmaInModalTurmas i{
+    font-size: 19px;
+    transition: all ease-in-out .3s;
+}
+
+.infoTurmaInModalTurmas i.active{
+    transform: rotate(180deg);
+}
+
+.linhaSeparadora{
+    width: 98%;
+    height: .4px;
+    background-color: gray;
+    display: block;
+    margin: 8px auto;
+}
+
+
+.contentTableTurma{
+    margin-bottom: 10px;
+    width: 100%;
+    display: none;
+}
+
+.contentTableTurma.active{
+    display: flex;
+}
+
+.tabelaTurma{
+    width: 98%;
+    border-collapse: collapse;
+}
+
+
+
+.tabelaTurma thead th{
+    text-transform: uppercase;
+    font-size: 13.5px;
+    padding: 5px 0;
+}
+
+.tabelaTurma tbody td{
+    font-size: 12px;
+    height: 60PX;
+    text-align: center;
+    /* padding: 5px 0; */
+    border-top: .4px solid gray;
+}
+
+.tabelaTurma tbody tr:hover{
+    background-color: #0c7a9056;
+}

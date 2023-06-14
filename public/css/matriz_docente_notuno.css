@@ -1,0 +1,23 @@
+
+.spanInputTable{
+    width: 250px;
+    height: 38px;
+    border: 1px solid gray;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    border-radius: 27px;
+}
+
+#inputSearchTable{
+    background-color: transparent;
+    width: 100%;
+    padding-left: 5px;
+    height: 100%;
+    border: none;
+    outline: none;
+}
+
+.spanInputTable ~ i{
+    position: relative;
+    left: -35px;
+}

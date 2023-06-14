@@ -1,0 +1,162 @@
+
+.bodyappRelatorios{
+    width: calc(100% - 150px);
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+
+}
+
+.leftBar.closed ~ .bodyappRelatorios{
+    width: calc(100%);
+}
+
+.principalRelatorios{
+    height: calc(100% - 40px);
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.footer{
+    width: 100%;
+    height: 40px;
+    background-color: #00804cff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titlePage01Relatorio{
+    display: inline-flex;
+    align-items: center;
+    width: calc(100% - 40px);
+    margin-top: 25px;
+    margin-left: 40px;
+    
+}
+
+.marcadorTitle{
+    height: 25px;
+    width: 5px;
+    background-color:#00804cff ;
+    display: block;
+    margin-right: 4px;
+}
+
+.linhaSeparadora{
+    width: 76%;
+    height: 1.5px;
+    background-color: gray;
+    display: block;
+    margin: 3px 10px;
+}
+
+.contentButtosRelatorios{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.titleContentButtons{
+    margin-top: 10px;
+    margin-left: 40px;
+}
+
+.wrappingButton{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.buttonOption{
+    width: 200px;
+    height: 55px;
+    background-color: rgb(238, 238, 238);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-decoration: none;
+    color: black;
+    transition: all ease-in-out .1s;
+    margin: 4px;
+}
+
+.marcador{
+    width: 5px;
+    height: 100%;
+}
+
+.buttonVerde .marcador{
+    background-color: #00804cff;
+}
+
+
+.buttonAzul .marcador{
+    background-color: #004c80ff;
+}
+
+.buttonAmarelo .marcador{
+    background-color: #dfdb04ff;
+}
+
+.buttonCinza .marcador{
+    background-color: rgb(218, 218, 218);
+
+
+}
+
+.valueOptionButton{
+    transition: all ease-in-out .2s;
+}
+
+.buttonVerde:hover{
+    background-color: #00804cff;
+    color: white;
+}
+
+.buttonAzul:hover{
+    background-color: #004c80ff;
+    color: white;
+}
+
+.buttonAmarelo:hover{
+    background-color: #dfdb04ff;
+    color: white;
+}
+
+.buttonCinza:hover{
+    background-color: rgb(218, 218, 218);
+    color: white;
+}
+
+
+
+
+.buttonOption:hover .valueOptionButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-weight: 600;
+}
+
+.buttonOption:hover {
+    border-radius: 4px;
+}
+
+
+
+.buttonOption:hover .marcador{
+    display: none;
+}

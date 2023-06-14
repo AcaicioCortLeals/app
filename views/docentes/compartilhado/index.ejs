@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="nomeCurso">Docentes Compartilhados</title>
+
+    <link rel="stylesheet" href="./css/curso/index.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+    <link rel="stylesheet" href="./css/cabecalho.css">
+    <link rel="stylesheet" href="./css/relatoriosPage01.css">
+    <link rel="stylesheet" href="./css/relatorio_matriz_ocupacional.css">
+    <link rel="stylesheet" href="./css/docentes/style.css">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="./js/index.js" defer></script>
+
+</head>
+
+<body>
+
+    <header class="cabecalho">
+        <img height="110px" src="./img/icon_sistema.png" alt="">
+    </header>
+    <div class="wrapingApp">
+        <div class="leftBar">
+            <span onclick="toggleBarLeft()" class="btnFecharBarra"> <p style="font-size: 14px;">Esconder</p> <i class="uil uil-angle-left-b"></i></span>
+            <span onclick="irToHome()" class="optionBar"> <p style="font-size: 14px;">Início</p> <i class="uil uil-home"></i></span>
+            <span class="optionBar">Opção 01</span>
+            <span class="optionBar">Opção 01</span>
+            <span class="optionBar">Opção 02</span>
+            <span class="optionBar">Opção 03</span>
+            <span class="optionBar">Opção 04</span>
+            <span class="optionBar">Opção 05</span>
+            <span class="optionBar">Opção 06</span>
+            <span class="optionBar">Opção 07</span>
+            <a style="font-style: none; text-decoration: none;" class="spanOptionRelatorio" href="./relatorios"> <img src="./img/icon_relatorios.png" style="margin-right: 5px;" width="15px" alt=""> Relatórios</a>
+        </div>
+        <div  onclick="toggleBarLeft()" class="menuleftbar"><i class="uil uil-draggabledots"></i></div>
+
+        <div class="bodyappRelatorios">
+            <div class="principalRelatorios">
+
+                <span class="titlePage01Relatorio">
+                    <span class="marcadorTitle"></span> <h3>Professores Compartilhados</h3>
+                </span>
+                
+                <div class="contentAppProfessoresCompartilhados" >
+                    <div class="contentCardInfo">
+
+
+                    </div>
+                    
+                    
+                    <div class="contentTable">
+                        <table id="tabelaDocentesCompartilhados">
+                            <thead>
+                                <tr><th>unidade_turma</th> <th>curso</th> <th>turma</th> <th>disciplina</th> <th>docente</th> <th>curso_docente</th> <th>unidade_docente</th>  </tr>
+                            </thead>
+                            <tbody>
+                                <% docentesCompartilhados.forEach((professor)=>{ %>
+                                   <tr> <td>  <%= professor.nome_unidade_turma %> </td> <td> <%= professor.nome_curso_disciplina_turma %></td> <td> <%= professor.codigo_turma %></td> <td> <%= professor.nome_disciplina %></td> <td> <%= professor.nome_docente  %></td> <td> <%= professor.curso_vinculo_docente %></td> <td> <%= professor.nome_unidade_vinculo_docente %></td> </tr> 
+                             <%})%>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                
+               
+                
+                
+            </div>
+            <div class="footer"><img src="./img/logoPrograd.png" height="30px" alt="logo-prograd"></div>
+        </div>
+           
+    </div> 
+
+</body>
+<script>
+    function criarCards(){
+
+        let linhas = document.querySelectorAll('#tabelaDocentesCompartilhados tbody tr');
+        let htmlCards = '';
+        let contentCardInfo = document.querySelector('.contentCardInfo');
+        linhas.forEach((linha)=>{
+            let celulas = linha.querySelectorAll('td');
+
+            htmlCards = htmlCards + `
+                
+                        <span class="cardInfoCompartilhamento">
+                            <!-- <div class="titleCard"> <img src="./img/row_rotate.png" width="25px" alt="row_rotate" title="compartilhamento"> <h4> Compartilhamento </h4> </div> -->
+                            <span style="display:inline-flex; align-items:center;" > <i style="font-size:19px" class='uil uil-user-square'></i>  <h4 style="font-size:15px">${celulas[4].outerText}</h4> </span>
+                            <div>
+                                <div class="separaInfoCard"></div
+                                <span>
+                                    <h5 style="color:#00804cff;">De:</h5>
+                                    <span class="infoInCard" > <h6>Unidade:</h6> <p>${celulas[6].outerText}</p> </span>
+                                    <span class="infoInCard" > <h6>Curso:</h6> <p>${celulas[5].outerText} </p> </span>
+                                    
+                                    
+                                </span>
+
+                                <div class="separaInfoCard"></div
+                                <span>
+                                    <h5 style="color:#00804cff;">Para:</h5>
+                                    <span class="infoInCard" > <h6>Unidade:</h6> <p>${celulas[0].outerText}</p> </span>
+                                    <span class="infoInCard" > <h6>Curso:</h6> <p>${celulas[1].outerText}</p> </span>
+                                    <span class="infoInCard" > <h6>Turma:</h6> <p>${celulas[2].outerText}</p> </span>
+                                    <span class="infoInCard" > <h6>Componente:</h6> <p>${celulas[3].outerText}</p> </span>
+                                </span>
+                            </div>
+                        </span>
+         
+            `
+
+        });
+
+        contentCardInfo.innerHTML =   htmlCards ;
+    }
+    criarCards();
+</script>
+</html>
+
+
+
+        
+        
+       

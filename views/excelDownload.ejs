@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Matriz Ocupacional in Excel</title>
+    <!-- use xlsx.full.min.js from version 0.19.3 -->
+    <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+        
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .contentButton{
+
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .btnBaixar.active{
+            background-color: #21a366ff;
+            cursor: pointer;
+        }
+
+        .btnBaixar.active  #setaDownload{
+            animation: seta 1.3s infinite ease-in-out;
+        }
+
+        .btnBaixar{
+            margin: auto;
+            background-color: gainsboro;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all ease-in-out .5s;
+            cursor: not-allowed;
+        }
+
+        .btnBaixar.active:hover{
+            background-color: rgb(25, 119, 75);
+            border-radius: 50%;
+        }
+
+        .btnBaixar.active:hover #setaDownload{
+            top: -10px;
+            transform: rotate(180deg);
+            animation: none;
+        }
+
+        @keyframes seta {
+            0%{
+                top: 0;
+            }
+           20%{
+            top: 10px ;
+           }
+           50%{
+            top:-30px;
+           }
+           80%{
+            top: 20px;
+           }
+            100%{
+                top:0;
+            }
+
+        }
+
+        #setaDownload{
+            font-size: 70PX;
+            color: white;
+            position: relative;
+            transition: all ease-in-out .3s;
+        }
+
+
+
+        #textoBotao{
+            color: gray;
+            font-size: 20px;
+            font-weight:500 ;
+            margin-top: 3px;
+        }
+
+        .wrappinButton:has(.btnBaixar.active) #textoBotao{
+            color:#21a366ff ;
+
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="contentButton">
+        <span class="wrappinButton">
+            <span class="btnBaixar">
+                <i id="setaDownload" class="uil uil-arrow-down"></i>
+            </span>
+            <p id="textoBotao">Baixar tabela em excel</p>
+        </span>
+    </div>
+    
+    <table style="display: none;" id="tabela">
+         <thead>
+            <tr><th>Unidade</th>  <th>Coordenação</th> <th> Curso</th> <th>Modalidade Curso</th> <th>Modalidade Oferta</th> <th>Modalidade Ensino</th> <th>Turno</th>  <th>Código</th> <th>Nome</th> <th>Período</th> <th>Ch total</th> <th>Ch semanal</th> <th>Nome</th> <th>Cod S.A</th> <th>Regime de Trabalho</th> <th>Vínculo</th> <th>Status</th> <th>Ch total</th> <th>Código turma</th> <th>SEG</th> <th>TER</th> <th>QUA</th> <th>QUI</th> <th>SEX</th> <th>SAB</th> <th>Status</th> <th>Informações Complementares</th> </tr>
+         </thead>
+         <tbody>
+
+         </tbody>
+    </table>
+
+</body>
+
+<script>
+
+
+    document.querySelector('.btnBaixar').addEventListener('click', async ()=>{
+        await Table2XLSX();
+    })
+
+    async function buscardados(){
+      const dados = await fetch('/teste', {
+            method: 'POST',
+
+        }).then(async (value) => {
+            // const dado_retorno = await value.json();
+            let dado = await value.json();
+            console.log(dado.relatorio)
+            return dado.relatorio;
+        }).catch((err)=>{
+            console.error(err);
+            return false;
+        })
+
+     return dados;   
+    }
+
+    
+
+    (async()=>{
+       
+       const array_dados = await buscardados()
+       const sucessCarga = await inputarDadosBase(array_dados);
+       if(sucessCarga === true){
+        habilitaBotaoDownlaod();
+        //    await Table2XLSX();
+       }
+       
+   })();
+   
+   async function inputarDadosBase(dados_array){
+       // console.log('chegou', dados_array);
+    try{
+
+    
+    const corpoTabela = document.querySelector('table tbody')
+       dados_array.forEach((dado, index) => {
+           let nome_unidade = dado.unidadeSigla || 'Null';
+           console.log(nome_unidade);
+           let coordenacao = dado.coordenacao || 'Null';
+           console.log(coordenacao);
+           let curso = dado.nomeCurso || 'Null';
+           console.log(curso);
+           let modalidadeCurso = dado.modCurso || 'Null';
+           console.log(modalidadeCurso);
+           let modalidadeOferta = dado.modOferta || 'Null';
+           console.log(modalidadeCurso);
+   
+           let modalidadeEnsino = dado.modDesc || 'Null';
+           console.log(modalidadeEnsino);
+   
+           let turno = dado.turnoDesc || 'Null';
+           console.log(turno);
+   
+           let codComponente = dado.codigoDisciplina || 'Null';
+           console.log(codComponente);
+   
+           let compCurricular = dado.nomeDisciplina || 'Null';
+           console.log(compCurricular);
+   
+           let periodoCompCurricular = dado.periodoDisci || 'Null';
+           console.log(periodoCompCurricular);
+   
+           let cHtotalDisc = dado.cargaSemestralDisci || 'Null';
+           console.log(cHtotalDisc);
+   
+           let cHSemanalDisc = dado.cargaSemanalDisci || 'Null';
+           console.log(cHSemanalDisc);
+   
+           let nomeDocente = dado.nomeDocente || 'sem professor' ;
+           console.log(nomeDocente);
+   
+           let codSistemaAcademico = dado.codigo_sistema_aca || 'Null';
+           console.log(codSistemaAcademico);
+   
+           let chDocente = dado.carga_horaria || 'Null';
+           console.log(chDocente);
+   
+           let statusDocente = dado.descricao || 'Null';
+           console.log(chDocente);
+   
+   
+           let vinculo = 'sem vínculo';
+           if(dado.cod_efetivo > 0){
+                vinculo = 'Efetivo';
+           }else if(dado.cod_pss > 0){
+                vinculo = 'Pss';
+           }
+           console.log(vinculo);
+   
+           //pensar em como somar as cargas horárias
+           let cHtotal = 'Null';
+           console.log(cHtotal);
+   
+           let codigoTuma = dado.codigo_da_turma || 'Null';
+           console.log(codigoTuma);
+   
+           let diaSemana = dado.sigla || 'Null';
+           console.log(diaSemana);
+   
+           let horarioEntrada = dado.horario_entrada || 'Null'
+           let horarioSaida = dado.horario_saida || 'Null'
+           let idDDocenteInSistemaUea = dado.codigoDocente;
+
+           let funcaoDocente = dado.funcaoDescricao || 'sem informações adicionais';
+   
+           
+        //CRIAR LINHA
+           linhaNova = `<tr valorLinha="${index}" >   <td class="unidadeInTabela"> ${nome_unidade} </td> <td class="coordenacaoInTabela">${coordenacao}</td>  <td class="cursoInTabela">${curso}</td> <td class="modalidadeCursoInTabela">${modalidadeCurso}</td> <td  class="modalidadeOfertaInTabela">${modalidadeOferta}</td> <td class="modalidadeEnsinoInTabela">${modalidadeEnsino}</td> <td class="turnoInTabela">${turno}</td> <td class="codigoComponenteInTabela">${codComponente}</td> <td class="nomeComponenteInTabela">${compCurricular}</td> <td class="periodoInTabela">${periodoCompCurricular}</td> <td class="CHtotalComponenteInTabela">${cHtotalDisc}</td> <td class="CHSemanalComponenteInTabela">${cHSemanalDisc}</td> <td class="nomeDocenteInTabela">${nomeDocente}</td> <td class="codigoSAInTabela">${codSistemaAcademico}</td> <td>chDocente</td> <td class="vinculoInTabela">${vinculo}</td> <td class="statusInTabela">${statusDocente}</td> <td class="ChtotalDocenteComputadaInTabela">-</td> <td class="codigoTurmaInTabela">${codigoTuma}</td>`;
+           
+           
+           let novoDiaSemana = `  <td class="dia_SEG">${horarioEntrada} - ${horarioSaida}</td> <td class="dia_TER">-</td> <td class="dia_QUA">-</td> <td class="dia_QUI">-</td> <td class="dia_SEX">-</td> <td class="dia_SAB">-</td> `
+           if(diaSemana === 'TER'){
+                novoDiaSemana = ` <td class="dia_SEG">-</td> <td class="dia_TER">${horarioEntrada} - ${horarioSaida}</td> <td class="dia_QUA"></td> <td class="dia_QUI">-</td> <td class="dia_SEX">-</td> <td class="dia_SAB">-</td> `
+           }else if(diaSemana === 'QUA'){
+                novoDiaSemana = ` <td class="dia_SEG">-</td> <td class="dia_TER">-</td> <td class="dia_QUA">${horarioEntrada} - ${horarioSaida}</td> <td class="dia_QUI">-</td> <td class="dia_SEX">-</td> <td class="dia_SAB">-</td> `
+           }else if(diaSemana === 'QUI'){
+                novoDiaSemana = ` <td class="dia_SEG">-</td> <td class="dia_TER">-</td> <td class="dia_QUA">-</td> <td class="dia_QUI">${horarioEntrada} - ${horarioSaida}</td> <td class="dia_SEX">-</td> <td class="dia_SAB">-</td> `
+           }else if(diaSemana === 'SEX'){
+                novoDiaSemana = ` <td class="dia_SEG">-</td> <td class="dia_TER">-</td> <td class="dia_QUA">-</td> <td class="dia_QUI"></td> <td class="dia_SEX">${horarioEntrada} - ${horarioSaida}</td> <td class="dia_SAB">-</td> `
+           }else if(diaSemana === 'SAB'){
+                novoDiaSemana = ` <td class="dia_SEG">-</td> <td class="dia_TER">-</td> <td class="dia_QUA">-</td> <td class="dia_QUI">-</td> <td class="dia_SEX">-</td> <td class="dia_SAB">${horarioEntrada} - ${horarioSaida}</td>  `
+           }
+
+           let novoStatusCarga = ` <td class="statusCHInTable" >-</td>  <td funcaoDocenteInTabela>${funcaoDocente}</td> </tr> `
+
+
+           linhaNova = linhaNova + novoDiaSemana + novoStatusCarga;
+   
+
+           corpoTabela.innerHTML = corpoTabela.outerHTML + linhaNova;
+   
+        
+       });
+
+       return true;
+    }catch(err){
+        alert(err);
+        console.log(err);
+        return false;
+    }
+   }
+
+   function habilitaBotaoDownlaod(){
+        document.querySelector('.btnBaixar').classList.add('active');
+   }
+
+
+   async function Table2XLSX(){
+    /* Create worksheet from HTML DOM TABLE */
+    const table = document.getElementById("tabela");
+    const wb = XLSX.utils.table_to_book(table);
+
+  /* Export to file (start a download) */
+    XLSX.writeFile(wb, "SheetJSTable.xlsx");
+   }
+
+    
+    
+
+</script>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>relatorios SIGMO</title>
+    
+    
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link rel="stylesheet" href="./css/cabecalho.css">
+    <link rel="stylesheet" href="./css/relatoriosPage01.css">
+    
+    
+    <script src="./js/index.js" defer></script>
+
+</head>
+<body>
+    
+    <header class="cabecalho">
+        <img height="110px" src="./img/icon_sistema.png" alt="">
+    </header>
+    <div class="wrapingApp">
+        <div class="leftBar">
+            <span onclick="toggleBarLeft()" class="btnFecharBarra"> <p style="font-size: 14px;">Esconder</p> <i class="uil uil-angle-left-b"></i></span>
+            <span onclick="irToHome()" class="optionBar"> <p style="font-size: 14px;">Início</p> <i class="uil uil-home"></i></span>
+            <span class="optionBar">Opção 01</span>
+            <span class="optionBar">Opção 01</span>
+            <span class="optionBar">Opção 02</span>
+            <span class="optionBar">Opção 03</span>
+            <span class="optionBar">Opção 04</span>
+            <span class="optionBar">Opção 05</span>
+            <span class="optionBar">Opção 06</span>
+            <span class="optionBar">Opção 07</span>
+            <a style="font-style: none; text-decoration: none;" class="spanOptionRelatorio" href="./relatorios"> <img src="./img/icon_relatorios.png" style="margin-right: 5px;" width="15px" alt=""> Relatórios</a>
+        </div>
+        <div  onclick="toggleBarLeft()" class="menuleftbar"><i class="uil uil-draggabledots"></i></div>
+
+        <div class="bodyappRelatorios">
+            <div class="principalRelatorios">
+
+                <span class="titlePage01Relatorio">
+                    <span class="marcadorTitle"></span> <h3>Relatórios e Matrizes</h3>
+                </span>
+                <span class="linhaSeparadora"></span>
+
+                <div class="contentButtosRelatorios">
+                    <span class="titleContentButtons">Escolha um dos relatórios</span>
+                    <div class="wrappingButton">
+                        <a href="./relatorio_Matriz_Ocupacional" class="buttonOption buttonVerde"> <span class="marcador"></span> <span class="valueOptionButton" style="margin-left: 3px;">Matriz ocupacional</span></a>
+                        <!-- <a href="./index.html" class="buttonOption buttonAzul"> <span class="marcador"></span> <span class="valueOptionButton" style="margin-left: 3px;">Relatório de Curso</span></a> -->
+                        <!-- <a href="./relatorio_docente.html" class="buttonOption buttonAmarelo"> <span class="marcador"></span> <span class="valueOptionButton" style="margin-left: 3px;">Relatório de Docentes  </span></a> -->
+                        <a href="./relatorio_outros" class="buttonOption buttonCinza"> <span class="marcador"></span> <span class="valueOptionButton" style="margin-left: 3px;"> Outros Relatório   </span></a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="footer"><img src="./img/logoPrograd.png" height="30px" alt="logo-prograd"></div>
+        </div>
+           
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+
+.contentAppProfessoresCompartilhados{
+    width:100%;
+    overflow-y: scroll;
+}
+
+.contentCardInfo{
+    width:100%;
+    max-height: 300px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 5px;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.cardInfoCompartilhamento:hover{
+    background-color: #f2f2f2;
+}
+
+
+.cardInfoCompartilhamento{
+    margin: 5px;
+    display: block;
+    min-width: 250px;
+    width: 24%;
+    padding: 5px;
+    /* height: 220px; */
+    box-shadow: 0 0 6px 0 gainsboro;
+    overflow-y: scroll;
+
+}
+
+.titleCard{
+    width: 100%;
+    margin: 2px auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-around
+}
+
+.infoInCard p{
+    font-size: 12px;
+}
+
+.separaInfoCard{
+    width: 100%;
+    margin: 3px auto;
+    height: 1px;
+    background-color: gray;
+}
+
+.contentTable{
+    display: none;
+}

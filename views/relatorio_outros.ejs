@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>relatorios SIGMO</title>
+    
+    
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link rel="stylesheet" href="./css/cabecalho.css">
+    <link rel="stylesheet" href="./css/relatoriosPage01.css">
+    <link rel="stylesheet" href="./css/relatorio_matriz_ocupacional.css">
+    <link rel="stylesheet" href="./css/relatorio_outros.css">
+    
+    
+    
+    <script src="./js/index.js" defer></script>
+
+</head>
+<body>      
+
+    <div id="bgModal">
+        <div class="modalEscolherNoturno">
+            <div style="overflow: scroll;height: 410px;">
+                <div class="titleModal">
+                    <h2>Filtro</h2>
+                    <i  onclick="fecharModalNoturno()" class="uil uil-times"></i>
+                </div>
+    
+                <!-- PERÍODO -->
+                <div onclick="abrirOptions(this, 0)" class="selectPeriodo">
+                    <p>Selecione o período</p>
+                    <i class="uil uil-angle-down"></i>
+                </div>
+                <div class="optinsPeriodo">
+                    <span onclick="selectOption(this, 0)">período 2022/1</span>
+                    <span onclick="selectOption(this, 0)">período 2022/2</span>
+                    <span onclick="selectOption(this, 0)">período 2023/1</span>
+                    <span onclick="selectOption(this, 0)" >período 2023/2</span>
+                    <span onclick="selectOption(this, 0)" >período 2024/1</span>
+                    <span onclick="selectOption(this, 0)" >período 2024/2</span>
+                </div>
+    
+                <!-- UNIDADE -->
+                <div onclick="abrirOptions(this,1)" class="selectPeriodo">
+                    <p>Selecione a unidade</p>
+                    <i class="uil uil-angle-down"></i>
+                </div>
+                <div class="optinsPeriodo">
+                    <span onclick="selectOption(this, 1)">Escola Normal Superior</span>
+                    <span onclick="selectOption(this, 1)">Escola Superior de Ciências da Saúde</span>
+                    <span onclick="selectOption(this, 1)">Escola Superior de Tecnologia</span>
+                    <span onclick="selectOption(this, 1)">Escola Superior de Artes e Turismo</span>
+                </div>
+    
+                <!-- CURSO -->
+                <div onclick="abrirOptions(this,2)" class="selectPeriodo">
+                    <p>Selecione um curso</p>
+                    <i class="uil uil-angle-down"></i>
+                </div>
+                <div class="optinsPeriodo">
+                    <span onclick="selectOption(this, 2)">Medicina</span>
+                    <span onclick="selectOption(this, 2)">Enfermagem</span>
+                    <span onclick="selectOption(this, 2)">Licenciatura em Letras</span>
+                    <span onclick="selectOption(this, 2)">Contabilidade</span>
+                </div>
+            </div>
+            
+
+            <div onclick="abrirRelatorioDocente(1)" class="botaoconfirm"> Gerar relatório</div>
+            
+
+        </div>
+
+        <div class="modalDocentesCursos">
+            <div class="titleModal"><h3>Docentes/curso</h3><i onclick="fecharModalDocente()" class="uil uil-times"></i></div>
+            <div class="linhaSeparadoraInModal"></div>
+
+            <div class="wrappingBodyModal">
+
+                <div class="contentSearcuros">
+                    <div class="contetInputSearchCourse">
+                        <i class="uil uil-search"></i>
+                        <input id="inputBuscaCurso" placeholder="escolha um curso" type="text">
+                        <span class="btnBuscarCursos">buscar</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="linhaSeparadoraInModal"></div>
+
+            <div class="wrappingCursos">
+                <table id="tabelaCursos">
+                    <thead>
+                        <tr><th>Código</th> <th>Nome</th> <th>status</th> <th>M. curso</th> <th>M. oferta</th> <th>M. ensino</th> <th>Unidade física</th> <th>Unidade Responsável</th> <th> Coordenador</th> <th>Secretário</th> </tr>
+                    </thead>
+                    <tbody>
+                        <% cursos.forEach(curso => { %>
+                           <tr onclick = "detalharCurso(<%= curso.idCurso %>)"> <td> <%= curso.codigo_curso%> </td> <td><%= curso.nome%></td> <td><%= curso.estatus%></td> <td><%= curso.modalidade_curso_codigo%></td> <td><%= curso.modalidade_ensino_codigo%></td> <td><%= curso.modalidade_oferta_codigo%></td> <td title="<%= curso.unidade_fisica_descricao %>" ><%= curso.unidade_codigo_fisica%></td> <td title="<%= curso.unidade_descricao %>""><%= curso.unidade_codigo_responsavel%></td> <td><%= curso.codigo_servidor_cordenador%></td> <td><%= curso.codigo_servidor_secretario%></td>  </tr> 
+                           <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="modalDocentesCompartilhado">
+            <div class="titleModal"><h3>Docentes Compartilhados</h3><i onclick="fecharModalCompartilhado()" class="uil uil-times"></i></div>
+            <!-- <div class="divSearchDocentesCompartilhaos" > -->
+                <!-- <i class="uil uil-search"></i> -->
+                <!-- <input id="inputSearchPeridoDocenteCompartilhado" placeholder="busque ou selecione um periodo" type="text"> -->
+                <!-- <span class="btnBuscarDocenteCompartilhado">buscar</span> -->
+            <!-- </div> -->
+
+            <div idSemestre="null" id="brnOenSelectPeriodos" onclick="abrirSelecao()" style="width: 90%; margin-top: 10px;" class="itenPeriodo"> <p>Selecione o período</p> <i class="uil uil-angle-down"></i> </div>
+            <div class="showPeriodosSelect">
+                <% periodos.forEach((periodo)=>{ %>
+                    <span onclick="selecionaPeriodo(this, <%= periodo.codigo %>)" class="itenPeriodo <%= periodo.estatus %> ">  <h4><%= periodo.ano_semestre %></h4>  <span style="display: flex;"> <p style="margin:auto 2px" class="formatarData"> <%= periodo.data_inicio %></p> - <p style="margin:auto 2px"  class="formatarData"><%= periodo.data_fim %></p> </span>    </span>
+                <% }) %>
+            </div>
+
+            <div>
+                <span onclick="buscarDocentesCompartilhados()" class="btnBuscar">Buscar <i class="uil uil-message"></i></span>
+            </div>
+        </div>
+
+        <script>
+                    function formatarDataPeriodo(){
+                try {
+                    
+
+                document.querySelectorAll('.formatarData').forEach((elementoData)=>{
+                    let currentData = elementoData.outerText;  
+                    console.log(currentData,elementoData)
+
+                    let dia = new Date(currentData).getDate();
+                    if(dia < 10){
+                        dia = `0${dia}`
+                    }
+                    let mes = new Date(currentData).getMonth()
+                    if(mes < 10){
+                        mes = `0${mes}`
+                    }
+                    let ano = new Date(currentData).getFullYear();
+                    console.log(dia,mes,ano)
+
+
+                    elementoData.innerText = `${dia}/${mes}/${ano}` 
+
+                })
+                } catch (error) {
+                    console.log(error)    
+                }
+            }
+
+            formatarDataPeriodo();
+        </script>   
+
+    <div class="modalDocentesVoluntario">
+        <div class="titleModal"><h3>Docentes Voluntários</h3><i onclick="fecharModalVoluntario()" class="uil uil-times"></i></div>
+        <!-- <div class="divSearchDocentesCompartilhaos" > -->
+            <!-- <i class="uil uil-search"></i> -->
+            <!-- <input id="inputSearchPeridoDocenteCompartilhado" placeholder="busque ou selecione um periodo" type="text"> -->
+            <!-- <span class="btnBuscarDocenteCompartilhado">buscar</span> -->
+        <!-- </div> -->
+
+        <div idSemestre="null" id="brnOenSelectPeriodosVoluntarios" onclick="abrirSelecaoVoluntarios()" style="width: 90%; margin-top: 10px;" class="itenPeriodo"> <p>Selecione o período</p> <i class="uil uil-angle-down"></i> </div>
+        <div class="showPeriodosSelectVoluntarios">
+            <% periodos.forEach((periodo)=>{ %>
+                <span onclick="selecionaPeriodoVoluntarios(this, <%= periodo.codigo %>)" class="itenPeriodoVoluntarios <%= periodo.estatus %> ">  <h4><%= periodo.ano_semestre %></h4>  <span style="display: flex;"> <p style="margin:auto 2px" class="formatarDataVolutarios"> <%= periodo.data_inicio %></p> - <p style="margin:auto 2px"  class="formatarDataVolutarios"><%= periodo.data_fim %></p> </span>    </span>
+            <% }) %>
+        </div>
+
+        <div>
+            <span onclick="buscarDocentesVoluntarios()" class="btnBuscarVoluntarios">Buscar <i class="uil uil-message"></i></span>
+        </div>
+    </div>
+
+    <script>
+        function formatarDataPeriodoVoluntarios(){
+    try {
+        
+
+    document.querySelectorAll('.formatarDataVolutarios').forEach((elementoData)=>{
+        let currentData = elementoData.outerText;  
+        console.log(currentData,elementoData)
+
+        let dia = new Date(currentData).getDate();
+        if(dia < 10){
+            dia = `0${dia}`
+        }
+        let mes = new Date(currentData).getMonth() +1;
+        if(mes < 10){
+            mes = `0${mes}`
+        }
+        let ano = new Date(currentData).getFullYear();
+        console.log(dia,mes,ano)
+
+
+        elementoData.innerText = `${dia}/${mes}/${ano}` 
+
+    })
+    } catch (error) {
+        console.log(error)    
+    }
+}
+
+formatarDataPeriodoVoluntarios();
+</script>   
+
+        
+
+
+    </div>
+
+    
+    
+    <header class="cabecalho">
+        <img height="110px" src="./img/icon_sistema.png" alt="">
+    </header>
+    <div class="wrapingApp">
+        <div class="leftBar">
+            <span onclick="toggleBarLeft()" class="btnFecharBarra"> <p style="font-size: 14px;">Esconder</p> <i class="uil uil-angle-left-b"></i></span>
+            <span onclick="irToHome()" class="optionBar"> <p style="font-size: 14px;">Início</p> <i class="uil uil-home"></i></span>
+            <span class="optionBar">Opção 01</span>
+            <span class="optionBar">Opção 01</span>
+            <span class="optionBar">Opção 02</span>
+            <span class="optionBar">Opção 03</span>
+            <span class="optionBar">Opção 04</span>
+            <span class="optionBar">Opção 05</span>
+            <span class="optionBar">Opção 06</span>
+            <span class="optionBar">Opção 07</span>
+            <a style="font-style: none; text-decoration: none;" class="spanOptionRelatorio" href="./relatorios"> <img src="./img/icon_relatorios.png" style="margin-right: 5px;" width="15px" alt=""> Relatórios</a>
+        </div>
+        <div  onclick="toggleBarLeft()" class="menuleftbar"><i class="uil uil-draggabledots"></i></div>
+
+        <div class="bodyappRelatorios">
+            <div class="principalRelatorios">
+
+                <span class="titlePage01Relatorio">
+                    <span class="marcadorTitle"></span> <h3>Relatórios e Matrizes</h3>
+                </span>
+                <p style="margin-left: 40px;">Buscas Específicas</p>
+                <span class="linhaSeparadora"></span>
+
+                <div class="contentFiltros">
+                    <!-- <div  style="display: inline-flex; padding-left:15px;"> <i class="uil uil-filter"></i> <h3>filtros</h3></div> -->
+                    
+                    <div class="wrappingButtonsOutrosRelatorios">
+
+                        <button style="width:300px; justify-content: space-between;" onclick="abrirModalDocente()"> <i onclick="fecharModalDocente()" style="font-size: 23px;" class="uil uil-book-reader"></i> Docentes curso </button>
+                        <button style="width:300px; justify-content: space-between;" onclick="abrirModalNoturno()"> <i style="font-size: 19px;" class="uil uil-moon"></i> Docentes noturnos </button>
+                        <button style="width:300px; justify-content: space-between;" onclick="abrirModalCompartilhado()"> <i style="font-size: 21px;" class="uil uil-user-arrows"></i> Docentes Compartilhados </button>
+                        <button style="width:300px; justify-content: space-between;" onclick="abrirModalVoluntarios()"> <i style="font-size: 21px;" class="uil uil-users-alt"></i> Docentes Vonluntários </button>
+
+
+                    </div>
+
+                    
+                </div>
+                
+                
+
+            </div>
+            <div class="footer"><img src="./img/logoPrograd.png" height="30px" alt="logo-prograd"></div>
+        </div>
+           
+    </div>
+
+</body>
+<script>
+
+    function selectOption(elemento, indice){
+        document.querySelectorAll('.optinsPeriodo')[indice].classList.remove('active');
+        document.querySelectorAll('.selectPeriodo')[indice].querySelector('p').innerText = elemento.outerText; 
+    }
+
+    function abrirOptions(elemento, indice){
+        document.querySelectorAll('.optinsPeriodo')[indice].classList.toggle('active')
+        elemento.querySelector('i').classList.toggle('active');
+    }
+
+    function abrirModalNoturno(){
+        document.querySelector('#bgModal').classList.add('active');
+        document.querySelector('.modalEscolherNoturno').classList.add('active');
+
+    }
+
+    function fecharModalNoturno(){
+        document.querySelector('#bgModal').classList.remove('active');
+        document.querySelector('.modalEscolherNoturno').classList.remove('active');
+    }
+
+    /*function mostrarInfoBusca(){
+        document.querySelector('#bgModal').classList.add('active')
+        document.querySelector('.modalInfoBusca').classList.add('active')
+    }
+
+    function fecharModalInfo(){
+        document.querySelector('#bgModal').classList.remove('active')
+        document.querySelector('.modalInfoBusca').classList.remove('active')
+    }
+
+
+    async function buscarProfessores (){
+
+        const barraBusca = document.querySelector('#search');
+
+        if(barraBusca.value === '' || barraBusca.value === null || barraBusca.value === undefined){
+            alert('pesquise por cpf, matrícula e nome')
+            return false;
+        }
+
+
+        fetch('http://localhost:3003/apiProf', {
+            method: 'GET',
+        }).then(async (value) => {
+            const dados = await value.json();
+            await povoaTabela(dados);
+            console.log(dados)
+        }).catch((value) => {
+            console.log(value)    ;
+        })
+    }
+
+    async function povoaTabela(dados){
+        
+        setTimeout(()=>{
+            const corpotabela = document.querySelector('#corpoTabela');
+            corpotabela.innerHTML = '';
+            let total = '';
+            dados.professor.forEach((dado) => {
+                total = total + `<tr onclick="abrirRelatorioDocente(${dado.id})" class="linhaTabela"> <td>${dado.cpf}</td> <td>${dado.nome}</td> <td>${dado.matricula}</td> <td>${dado.carga_horaria}</td> <td>${dado.unidade_lotacao}</td> <td>${dado.curso_lotacao}</td> <td>${dado.telefone}</td> <td>${dado.email}</td> <td>-</td> <td>-</td> </tr>`
+            })
+            corpotabela.innerHTML = total;
+            document.querySelector('#totalBusca').innerText = dados.professor.length;
+            document.querySelector('.optionTable span').classList.add('active')
+            document.querySelector('.contetTable').classList.add('active')
+            
+        },2000)
+
+
+        
+    }*/
+
+    function abrirRelatorioDocente(id){
+        window.open(
+        './matriz_docente_noturno.html',
+        '_blank' // <- This is what makes it open in a new window.
+      );
+    }
+
+    function abrirModalDocente(){
+        document.querySelector('#bgModal').classList.add('active');
+        document.querySelector('.modalDocentesCursos').classList.add('active');
+        document.querySelector('.modalDocentesCursos').style.display = 'block'
+
+        setTimeout(()=>{
+            document.querySelector('.modalDocentesCursos').style.top = '0'
+            document.querySelector('.modalDocentesCursos').style.opacity = '1'
+        },1000)
+    }
+
+    function fecharModalDocente(){
+        document.querySelector('.modalDocentesCursos').style.top = '-200%'
+        document.querySelector('.modalDocentesCursos').style.opacity = '0'
+        setTimeout(()=>{
+            document.querySelector('#bgModal').classList.remove('active');
+            document.querySelector('.modalDocentesCursos').classList.remove('active');
+            document.querySelector('.modalDocentesCursos').style.display = 'none'
+        },700)
+    }
+
+
+    document.querySelector('.btnBuscarCursos').addEventListener('click', (event)=>{
+        console.log(event)
+    });
+    
+   
+
+    document.querySelector('#inputBuscaCurso').addEventListener('keypress', (event)=>{
+       if(event.key === 'Enter'){
+        // if(event.target.value.length < 3){
+        //     alert('digite pelo menos 3 (três) caractéres');
+        //     return 'digite pelo menos três caractéres'
+        // }else{
+            const valor_busca = event.target.value.trim().toLowerCase()
+            const linhas_table = document.querySelectorAll('#tabelaCursos tbody tr');
+            
+            linhas_table.forEach((linha)=>{
+                if(linha.querySelectorAll('td')[1].outerText.trim().toLowerCase().includes(valor_busca)){
+                    linha.classList.remove('linhaOcultaInTabela')
+                }else{
+                    linha.classList.add('linhaOcultaInTabela')
+                }
+            })
+        // }
+       }
+       return false;
+    });
+
+
+    function detalharCurso(codigoCurso){
+        window.open(`./infocursos?curso=${codigoCurso}`, "_blank").focus();
+    }
+
+    function abrirModalCompartilhado(){
+        document.querySelector('#bgModal').classList.add('active')
+        document.querySelector('.modalDocentesCompartilhado').classList.add('active')
+    }
+
+    function fecharModalCompartilhado(){
+        document.querySelector('#bgModal').classList.remove('active')
+        document.querySelector('.modalDocentesCompartilhado').classList.remove('active')
+    }
+
+    function abrirSelecao(){
+        document.querySelector('.showPeriodosSelect').classList.toggle('active');
+        
+    }
+
+    function fecharSelecao(){
+        document.querySelector('.showPeriodosSelect').classList.remove('active');
+        
+    }
+
+    function selecionaPeriodo(elemento, codPeriodo){
+        let botaoSeleciona = document.getElementById('brnOenSelectPeriodos');
+
+        let ano_semestre = elemento.querySelector('h4').outerText;
+        let dataIF = ` ${elemento.querySelectorAll('p')[0].outerText} -  ${elemento.querySelectorAll('p')[1].outerText} `
+        
+        botaoSeleciona.innerHTML =  `<h4> ${ano_semestre} </h4> <i class="uil uil-angle-down"></i> `;
+        botaoSeleciona.setAttribute('idSemestre',codPeriodo)
+        fecharSelecao();
+    }
+
+    //funcaçaõ disparada quando  o botao BUSCAR (da modal de docentes compartilhados) é acionado
+
+    function buscarDocentesCompartilhados(){
+        let codigoPeriodoBusca = document.querySelector('#brnOenSelectPeriodos').getAttribute('idSemestre');
+
+        if(codigoPeriodoBusca === 'null' || codigoPeriodoBusca == null || codigoPeriodoBusca === undefined ){
+            alert('Selecione um período!');
+            return;
+        }
+
+        let url = './docentescompartilhados?idPeriodo='+codigoPeriodoBusca;
+        let page =  window.open(url,'_blanck');
+        page.focus();
+    }
+
+
+    /*FUNÇÃO PARA A MODAL DOCENTE VOLUNT´RIOS*/
+
+    function abrirModalVoluntarios(){
+        document.querySelector('#bgModal').classList.add('active')
+        document.querySelector('.modalDocentesVoluntario').classList.add('active')
+    }
+
+    function fecharModalVoluntario(){
+        document.querySelector('#bgModal').classList.remove('active')
+        document.querySelector('.modalDocentesVoluntario').classList.remove('active')
+    }
+
+    function abrirSelecaoVoluntarios(){
+        document.querySelector('.showPeriodosSelectVoluntarios').classList.toggle('active');
+        
+    }
+
+    function fecharSelecao(){
+        document.querySelector('.showPeriodosSelectVoluntarios').classList.remove('active');
+        
+    }
+
+    function selecionaPeriodoVoluntarios(elemento, codPeriodo){
+        let botaoSeleciona = document.getElementById('brnOenSelectPeriodosVoluntarios');
+
+        let ano_semestre = elemento.querySelector('h4').outerText;
+        let dataIF = ` ${elemento.querySelectorAll('p')[0].outerText} -  ${elemento.querySelectorAll('p')[1].outerText} `
+        
+        botaoSeleciona.innerHTML =  `<h4> ${ano_semestre} </h4> <i class="uil uil-angle-down"></i> `;
+        botaoSeleciona.setAttribute('idSemestre',codPeriodo)
+        fecharSelecao();
+    }
+
+    function buscarDocentesVoluntarios(){
+        let codigoPeriodoBusca = document.querySelector('#brnOenSelectPeriodosVoluntarios').getAttribute('idSemestre');
+
+        if(codigoPeriodoBusca === 'null' || codigoPeriodoBusca == null || codigoPeriodoBusca === undefined ){
+            alert('Selecione um período!');
+            return;
+        }
+
+        let url = './docentescompartilhados?idPeriodo='+codigoPeriodoBusca;
+        let page =  window.open(url,'_blanck');
+        page.focus();
+    }
+
+    
+
+</script>
+</html>
+

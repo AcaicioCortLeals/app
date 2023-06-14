@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matriz Ocupacional - Nome da Unidade</title>
+    <link rel="stylesheet" href="./css/matriz_ocupacional.css">
+    <link rel="stylesheet" href="./css/modalMatriz_OCupaciional.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+    
+    <div id="bgModal">
+        <div class="modaloptoinUnidade">
+            <div class="titleModal"><h5>Escolha a Unidade</h5> <i onclick="fecharModalUnidade()" class="uil uil-times"></i></div>
+            <div class="optionsUnidades">
+                <!-- APAGAR ESTES COMENTÁRIOS -->
+                <!-- <span onclick="escolherUnidade(this.outerText)">ESA</span> -->
+                <!-- <span onclick="escolherUnidade(this.outerText)">ENS</span> -->
+                <!-- <span onclick="escolherUnidade(this.outerText)">EST</span> -->
+                <!-- <span onclick="escolherUnidade(this.outerText)">ED</span> -->
+                <!-- <span onclick="escolherUnidade(this.outerText)">CEST</span> -->
+                <!-- <span onclick="escolherUnidade(this.outerText)">CESIT</span> -->
+            </div>
+
+        </div>
+
+        <div class="modalOptionCurso">
+            <div class="titleModal">  <h5>Escolha o curso</h5> <i onclick="fecharModalCurso()" class="uil uil-times"></i> </div>
+            <div class="optionCurso">
+           
+            </div>
+        </div>
+    </div>
+
+    <header class="cabecalhoRelatorioMatriz">
+            <div><img src="./img/logo_prograd_verde.svg" width="150px" alt="logo_prograd" title="logo_prograd"></div>
+            <h3 style="font-size:18px; margin-top: 3px;">Universidade do Estado do Amazonas</h3>
+            <p style="font-weight: 500;">Matriz Ocupacional - 2023/01</p>
+
+            <div class="linhaSeparadoraMatriz"></div>
+
+            <div class="dataImpressao">
+                <span style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <i class="uil uil-clock"></i>
+                    <p class="valorHoraImpressao"></p>
+                </span>
+                <span style="display: flex; flex-direction: column; align-items: center; justify-content: center;" >
+                    <i class="uil uil-calendar-alt"></i>
+                    <p class="valorDataImpressao"></p>
+                </span>
+                <span style="display: flex; flex-direction: column; align-items: center; justify-content: center;" >
+                    <i class="uil uil-lock-access"></i>
+                    <p class="valorHash"></p>
+                </span>
+            </div>
+
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; width: 95%; ">
+
+                
+
+                <div class="cantentLegendas">
+                    <h5>Leegndas</h5>
+                    <span class="rowLegenda"> <h5>C.h</h5> <p> - Carga horária</p></span>
+                    <span class="rowLegenda"> <h5>Cod. S.A</h5> <p> - Código no Sistema Acadêmico</p></span>
+                    <span class="rowLegenda"> <div class="corIncompleta"></div> <p>carga horária incompleta</p> </span>
+                    <span class="rowLegenda"> <div class="corExcesso"></div> <p>carga horária em excesso</p> </span>
+                </div>
+                <div class="cantentBtnsHeaderTable" >
+                    <span onclick="imprimirMatrizOcupacional()">
+                        <img width="25px" src="./img/iconimpressao.svg" title="imprimir matriz" alt="icon_impressora">
+                        <p>imprimir</p>
+                    </span>
+     
+                </div>
+
+                <div class="filtrosTable">
+                    <div style="width:100%; display: inline-flex; align-items: baseline;"> <i class="uil uil-filter"></i> <h5 style="margin-left: 3px;">Filtros</h5></div>
+                    <span onclick="abrirModalUnidade()">Unidade</span>
+                    <span onclick="abrirModalCurso()" >Curso</span>
+                    <span>Turno</span>
+                    <span>Mod. Oferta</span>
+                    <span>Mod. Ensino</span>
+                    <span>Vinculo Docente</span>
+                    <span>Status C.h</span>
+
+                    <div class="barSearchContent">
+                        <input placeholder="busque um professor" id="inputBarSearch" type="text">
+                        <i class="uil uil-search"></i>
+                    </div>
+                </div>
+    
+            </div>
+            
+            <!-- <div class="linhaSeparadoraMatriz"></div> -->
+
+           
+
+
+            
+
+            <div class="contentTable">
+                <div id="tabela">
+                    <!-- <thead> <tr> <th>Unidade</th> <th>Curso</th> <th>Nome_Professor</th> <th>Vínculo</th> <th>status</th> <th>C.h vínculo</th> <th>Componente Curricular</th> <th>Período</th> <th>C.h semanal</th> <th>C.h total</th>  <th>  <table><thead><tr style="text-align: center;" >horario</tr></thead> <tbody class="bodyDiaSemana"><tr><td>Seg</td> <td>Ter</td> <td>Qua</td> <td>Qui</td> <td>Sex</td> <td>Sab</td></tr></tbody> </table>  </th>  <th>status de C.h</th>  <th>obsrvação</th></tr></thead> -->
+                        <!-- tabela dados gerais -->
+                        
+                        <div class="contentTableInTable">
+                     
+                        <div class="cabecalho_new_table">Informações Gerais</div>
+                        <table class="tableInTable">
+                            <thead>
+                                <tr><th>Unidade</th><th>Coordenação</th><th>Curso</th> <th>Modalidade Curso</th> <th>Modalidade Oferta</th> <th>Modalidade Ensino</th> <th>Turno</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr valorLinha="0" ><td class="valueUnidadeInTable">ESA</td><td>MEDICINA</td><td class="valueCursoInTable">MEDICINA</td> <td >Bacharelado</td> <td>Regular</td> <td>Presencial</td> <td>VESP</td> </tr>
+                                <tr valorLinha="1" ><td class="valueUnidadeInTable">ENS</td><td>MEDICINA</td><td class="valueCursoInTable">LETRAS</td> <td >Licenciatura</td> <td>Especial</td> <td>Presencial Modular Mediado</td> <td>MAT</td> </tr>
+                                <tr valorLinha="2" ><td class="valueUnidadeInTable">CESIT</td><td>MEDICINA</td><td class="valueCursoInTable">MEDICINA</td> <td >Tecnológo</td> <td>Especial Parfor</td> <td>Presencial Modular</td> <td>NOT</td> </tr>
+                            </tbody>
+                        </table>
+
+                        </div>
+                        <!-- tabela dados componente curricular -->
+                        
+                        <div class="contentTableInTable">
+                        <div class="cabecalho_new_table">Componente Curricular</div>
+                        <table class="tableInTable">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Nome</th>
+                                    <th>Período </th>
+                                    <th>Ch. total</th>
+                                    <th>Ch. semanal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>EXX</td><td>Caálculo I</td><td>1º</td><td>60h</td><td>4h</td></tr>
+                                <tr><td>EXX</td><td>Caálculo I</td><td>1º</td><td>60h</td><td>4h</td></tr>
+                                <tr><td>EXX</td><td>Caálculo I</td><td>1º</td><td>60h</td><td>4h</td></tr>
+                            </tbody>
+                        </table>
+                        </div>
+
+                        <div class="contentTableInTable">
+                            <div class="cabecalho_new_table">Dados Docente</div>
+                            <table class="tableInTable">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Cod. S.A</th>
+                                        <th>Regime de Trabalho </th>
+                                        <th>Vínculo</th>
+                                        <th>Status</th>
+                                        <th>Ch. total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Lucas</td><td>1</td><td>20h</td><td>Efetivo</td><td>ativo</td><td>16h</td></tr>
+                                    <tr><td>Lucas</td><td>1</td><td>20h</td><td>Efetivo</td><td>ativo</td><td>16h</td></tr>
+                                    <tr><td>Lucas</td><td>1</td><td>20h</td><td>Efetivo</td><td>ativo</td><td>16h</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="contentTableInTable">
+                            <div class="cabecalho_new_table">Turma</div>
+                                <table class="tableInTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Código Turma</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>A1</td></tr>
+                                        <tr><td>A1</td></tr>
+                                        <tr><td>A1</td> </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                        <div class="contentTableInTable">
+                            <div class="cabecalho_new_table">Horário Semanal</div>
+                                <table class="tableInTable tableDiasSemana">
+                                    <thead>
+                                        <tr>
+                                            <th>Seg</th>
+                                            <th>Ter</th>
+                                            <th>Qua</th>
+                                            <th>Qui</th>
+                                            <th>Sex</th>
+                                            <th>Sab</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>7:00 - 8:00</td><td></td><td></td><td>16:00 - 19:00</td><td></td><td></td><td></td></tr> 
+                                        <tr><td>7:00 - 8:00</td><td></td><td></td><td>16:00 - 19:00</td><td></td><td></td><td></td></tr>
+                                        <tr><td>7:00 - 8:00</td><td></td><td></td><td>16:00 - 19:00</td><td></td><td></td><td></td></tr>
+                                    </tbody>
+                                </table>
+                        </div>
+
+                        <div class="contentTableInTable">
+                            <div class="cabecalho_new_table">Status C.h</div>
+                                <table class="tableInTable ">
+                                    <thead>
+                                        <tr>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Completa</td></tr>
+                                        <tr><td>Completa</td></tr>
+                                        <tr><td>Completa</td></tr>
+                                    </tbody>
+                                </table>
+                        </div>
+
+                        <!-- <tr class="linhaIncompleta"> <td>ESA</td> <td>Medicina</td> <td>Adriana Távora de A. Taveira</td> <td>Efetivo</td> <td>-</td> <td>40h</td> <td>Estágio em Peuricultura e Pediatria</td> <td>11º</td> <td>40,5h</td> <td>10h</td> <td> <table><tbody class="bodyDiaSemana"><tr><td class="seg">7:30-11:50</td> <td class="ter"></td> <td class="qua"></td> <td class="qui"></td> <td class="sex">14:00-16:00</td> <td class="sab"></td> </tr></tbody></table> <td >incompleta</td> <td>- </td> </tr> -->
+                        <!-- <tr class="linhaExcesso"> <td>ESA</td> <td>Medicina</td> <td>Altair Rodrigues Chaves</td> <td>Efetivo</td> <td>-</td> <td>40h</td> <td>Estágio em Urgência e Emergência </td> <td>11º</td> <td>40,5h</td> <td>22h</td> <td>Ter | 14:00 - 16:00</td> <td >em excesso</td> </tr> -->
+                        <!-- <tr class="linhaExcesso"> <td>ESA</td> <td>Medicina</td> <td>Altair Rodrigues Chaves</td> <td>Efetivo</td> <td>-</td> <td>40h</td> <td>Anatomia Humana </td> <td>2º</td> <td>12h</td> <td>22h</td> <td>Ter | 14:00 - 16:00</td> <td >em excesso</td> </tr> -->
+                        <!-- <tr class="linhaExcesso"> <td>ESA</td> <td>Medicina</td> <td>Altair Rodrigues Chaves</td> <td>Efetivo</td> <td>-</td> <td>40h</td> <td>Clinica médica II (nefrologia) </td> <td>6º</td> <td>4h</td> <td>22h</td> <td>Ter | 14:00 - 16:00</td> <td >em excesso</td> </tr> -->
+                        <!-- <tr class=""> <td>ESA</td> <td>Medicina</td> <td>Agnaldo Barroso dos Santos</td> <td>Efetivo</td> <td>-</td> <td>40h</td> <td>Clínca Médica I (Cardiologia) </td> <td>5º</td> <td>12h</td> <td>16h</td> <td>Ter | 14:00 - 16:00</td> <td >normal</td> </tr> -->
+                    </tbody>
+                </table>
+                </div>
+            </div>
+    </header>
+    
+</body>
+<script defer>
+
+    function imprimirMatrizOcupacional(){
+       
+    
+    let hora = document.querySelector('.valorHoraImpressao'); 
+    let data = document.querySelector('.valorDataImpressao');
+    let dataAtual = new Date();
+    
+    let valorhora = dataAtual.getHours();
+    if(parseInt(valorhora)<10){
+        valorhora = '0'+valorhora;
+    }
+    let valorMinuto = dataAtual.getMinutes();
+    if(parseInt(valorMinuto)<10){
+        valorMinuto = '0'+valorMinuto;
+    }
+    let valorDia = dataAtual.getDate()
+    if(parseInt(valorDia)<10){
+        valorDia = '0'+valorDia;
+    }
+    let valorMes = dataAtual.getMonth()
+    if(parseInt(valorMes)<10){
+        valorMes = '0'+valorMes;
+    }
+    let valorAno = dataAtual.getFullYear()
+    
+    let key = '123456'
+    let textPlain = `${valorhora}${valorMinuto}${valorDia}${valorMes}${valorAno}`;
+    console.log(textPlain)
+    let hash = CryptoJS.AES.encrypt(textPlain, key);
+    document.querySelector('.valorHash').innerText = hash;
+    let hashDecripted = CryptoJS.AES.decrypt(hash.toString(), key);
+    console.log(hashDecripted.toString())
+
+    // console.log(hash.toString())
+
+    hora.innerHTML = `${valorhora}:${valorMinuto}`
+    data.innerHTML = `${valorDia}/${valorMes}/${valorAno}`
+    
+    
+    
+    
+    
+    
+    window.print();
+}
+
+// ROTINAS PARA A MODAL UNIDADE
+  
+    async function abrirModalUnidade(){
+        const unidades = await coletarValoresUnidade();
+        document.querySelector('#bgModal').classList.add('active')
+        document.querySelector('.modaloptoinUnidade').classList.add('active')
+    }
+
+
+    async function coletarValoresUnidade(){
+        const celulaUnidade = document.querySelectorAll('.valueUnidadeInTable');
+        let textoUnidade = [];
+        
+        celulaUnidade.forEach((value)=>{
+            console.log(value.outerText)
+            let encontrou = textoUnidade.indexOf(value.outerText);
+
+            if(encontrou === -1){
+                textoUnidade.push(value.outerText);
+            }else{
+            }    
+            console.log(textoUnidade)
+        })
+
+        // IMPLEMENTAR ROTINA PARA ADINAR OS VALORES DE 'textoUnidade' EM OPÇÕES DE ESCOLHA NA MODAL
+        let modal = document.querySelector('.optionsUnidades');
+        let options =  '<span onclick="removerFiltroUnidade()">REMOVER FILTRO</span>'
+        textoUnidade.forEach((valorUnidade) => {
+            options = options + `<span onclick="escolherUnidade(this.outerText)">${valorUnidade}</span>`
+        })
+        modal.innerHTML = ''
+        modal.innerHTML = options;
+
+        return textoUnidade
+    }
+
+    function fecharModalUnidade(){
+        document.querySelector('#bgModal').classList.remove('active')
+        document.querySelector('.modaloptoinUnidade').classList.remove('active')
+    }
+
+    function escolherUnidade(unidadeValor){
+        
+        formartarTabelaInUnidade(unidadeValor)
+
+        fecharModalUnidade()
+    }
+
+    function formartarTabelaInUnidade(unidadeValor){
+        // console.log(unidadeValor);
+        const linhasInUnidadeInMatriz = document.querySelectorAll('.valueUnidadeInTable');
+        let valorLinha = [];
+        linhasInUnidadeInMatriz.forEach((celulaUnidade) => {
+            if(celulaUnidade.outerText === unidadeValor){
+                // console.log(celulaUnidade.parentNode.getAttribute('valorLinha'));
+                valorLinha.push(parseInt(celulaUnidade.parentNode.getAttribute('valorLinha')))
+            }else{
+                // celulaUnidade.parentNode.classList.add('ocutarLinha');
+            }
+        })
+
+        console.log('linhas', valorLinha);
+
+        let contentTableInTable = document.querySelectorAll('.contentTableInTable');
+        
+        contentTableInTable.forEach((tabela) => {
+            let linhasTabela =  tabela.querySelectorAll('tbody tr');
+            linhasTabela.forEach((linhaas, index) => {
+                console.log(valorLinha.indexOf(index),linhaas)
+                if(valorLinha.indexOf(index) == -1){
+                    linhaas.classList.add('ocutarLinha');
+                }else{
+                    linhaas.classList.remove('ocutarLinha');
+
+                }
+            })
+        })
+
+
+    }
+
+    function removerFiltroUnidade(){
+        let contentTableInTable = document.querySelectorAll('.contentTableInTable');
+        
+        contentTableInTable.forEach((tabela) => {
+            let linhasTabela =  tabela.querySelectorAll('tbody tr');
+            linhasTabela.forEach((linhaas) => {
+                    linhaas.classList.remove('ocutarLinha');
+            })
+        })
+    }
+
+    // ROTINA PARA A MODAL CURSOS
+    async function abrirModalCurso(){
+        const unidades = await coletarValoresCurso();
+        document.querySelector('#bgModal').classList.add('active')
+        document.querySelector('.modalOptionCurso').classList.add('active')
+    }
+
+    async function coletarValoresCurso(){
+        const celulaUnidade = document.querySelectorAll('.valueCursoInTable');
+        let textoCurso = [];
+        
+        celulaUnidade.forEach((value)=>{
+            console.log(value.outerText)
+            let encontrou = textoCurso.indexOf(value.outerText);
+
+            if(encontrou === -1){
+                textoCurso.push(value.outerText);
+            }else{
+            }    
+            console.log(textoCurso)
+        })
+
+        // IMPLEMENTAR ROTINA PARA ADINAR OS VALORES DE 'textoUnidade' EM OPÇÕES DE ESCOLHA NA MODAL
+        let modal = document.querySelector('.optionCurso');
+        let options =  '<span onclick="removerFiltroCurso()">REMOVER FILTRO</span>'
+        textoCurso.forEach((valorCurso) => {
+            options = options + `<span onclick="escolherCurso(this.outerText)">${valorCurso}</span>`
+        })
+        modal.innerHTML = ''
+        modal.innerHTML = options;
+
+        return textoCurso
+    }
+
+   
+    function fecharModalCurso(){
+        document.querySelector('#bgModal').classList.remove('active')
+        document.querySelector('.modalOptionCurso').classList.remove('active')
+    }
+
+    function escolherCurso(valorCurso){
+       
+        formartarTabelaInCurso(valorCurso)
+
+        fecharModalCurso()
+
+    }
+    
+    
+    function formartarTabelaInCurso(cursoValor){
+        // console.log(unidadeValor);
+        const linhasInCursoInMatriz = document.querySelectorAll('.valueCursoInTable');
+        let valorLinha = [];
+        linhasInCursoInMatriz.forEach((celulaUnidade) => {
+            if(celulaUnidade.outerText === cursoValor){
+                // console.log(celulaUnidade.parentNode.getAttribute('valorLinha'));
+                valorLinha.push(parseInt(celulaUnidade.parentNode.getAttribute('valorLinha')))
+            }else{
+                // celulaUnidade.parentNode.classList.add('ocutarLinha');
+            }
+        })
+
+        console.log('linhas', valorLinha);
+
+        let contentTableInTable = document.querySelectorAll('.contentTableInTable');
+        
+        contentTableInTable.forEach((tabela) => {
+            let linhasTabela =  tabela.querySelectorAll('tbody tr');
+            linhasTabela.forEach((linhaas, index) => {
+                console.log(valorLinha.indexOf(index),linhaas)
+                if(valorLinha.indexOf(index) == -1){
+                    linhaas.classList.add('ocutarLinha');
+                }else{
+                    linhaas.classList.remove('ocutarLinha');
+
+                }
+            })
+        })
+
+
+    }
+
+
+    async function buscardados(){
+        fetch('http://localhost:8081/teste', {
+            method: 'POST',
+
+        }).then(async (value) => {
+            console.log(await value.json())
+        }).catch((err)=>{
+            console.error(err);
+        })
+    }
+
+    (async()=>{
+        await buscardados();
+    })();
+
+</script>
+</html>

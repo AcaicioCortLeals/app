@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matriz Ocupacional - Nome da Unidade</title>
+    <link rel="stylesheet" href="./css/matriz_ocupacional.css">
+    <link rel="stylesheet" href="./css/matriz_docente.css">
+    <link rel="stylesheet" href="./css/matriz_docente_notuno.css">
+    
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+
+    <header class="cabecalhoRelatorioMatriz">
+            <div><img src="./img/logo_prograd_verde.svg" width="150px" alt="logo_prograd" title="logo_prograd"></div>
+            <h3 style="font-size:18px; margin-top: 3px;">Universidade do Estado do Amazonas</h3>
+
+            <span style="display: flex; margin-top: 3px;">
+                <!-- <i class="uil uil-user"></i> <h5>Coordenação </h5> <p style="margin-left: 3px;"> Medicina  </p> -->
+            </span>
+
+            </div>
+
+            <div class="linhaSeparadoraMatriz"></div>
+
+            <div class="dataImpressao">
+                <span style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <i class="uil uil-clock"></i>
+                    <p class="valorHoraImpressao"></p>
+                </span>
+                <span style="display: flex; flex-direction: column; align-items: center; justify-content: center;" >
+                    <i class="uil uil-calendar-alt"></i>
+                    <p class="valorDataImpressao"></p>
+                </span>
+                <span style="display: flex; flex-direction: column; align-items: center; justify-content: center;" >
+                    <i class="uil uil-lock-access"></i>
+                    <p class="valorHash"></p>
+                </span>
+            </div>
+
+            <!-- <div class="linhaSeparadoraMatriz"></div> -->
+
+            <div class="cantentBtnsHeaderTable" >
+                <span onclick="imprimirMatrizOcupacional()">
+                    <img width="25px" src="./img/iconimpressao.svg" title="imprimir matriz" alt="icon_impressora">
+                    <p>imprimir</p>
+                </span>
+ 
+            </div>
+
+
+            <div class="contentTable">
+                
+                <div style="display: flex; align-items: center; justify-content: flex-end;">
+                     <span class="spanInputTable"> <input id="inputSearchTable" type="text"></span>
+                      <i class="uil uil-search"></i>
+                </div>
+
+                <table id="tabelaMatrizOcupacional">
+                    <thead> <tr> <th>Cod. Turma</th> <th>Componente Curricular</th> <th>Período</th> <th>C.h Disciplina</th> <th>C.h semanal</th> <th>C.h total</th> <th>Turno</th>  <th>Horário</th> <th>Curso</th> <th>Unidade</th>   </thead>
+                    <tbody>
+                        <tr class="linhaExcesso"> <td>EN1504</td> <td>Fisiologia</td> <td>2º</td> <td>90h</td> <td>9h</td> <td>9</td> <td>Matutino</td> <td>Seg | 08:00 - 12:00 <br> Ter | 09:30 - 10:00 </td> <td >Medicina</td> <td>Escola Superior de Ciências da Saúde - ENS</td> </tr>
+                        
+                        
+                    </tbody>
+                </table>
+            </div>
+    </header>
+    
+</body>
+<script defer>
+
+    function imprimirMatrizOcupacional(){
+       
+    
+    let hora = document.querySelector('.valorHoraImpressao'); 
+    let data = document.querySelector('.valorDataImpressao');
+    let dataAtual = new Date();
+    
+    let valorhora = dataAtual.getHours();
+    if(parseInt(valorhora)<10){
+        valorhora = '0'+valorhora;
+    }
+    let valorMinuto = dataAtual.getMinutes();
+    if(parseInt(valorMinuto)<10){
+        valorMinuto = '0'+valorMinuto;
+    }
+    let valorDia = dataAtual.getDate()
+    if(parseInt(valorDia)<10){
+        valorDia = '0'+valorDia;
+    }
+    let valorMes = dataAtual.getMonth()
+    if(parseInt(valorMes)<10){
+        valorMes = '0'+valorMes;
+    }
+    let valorAno = dataAtual.getFullYear()
+    
+    let key = '123456'
+    let textPlain = `${valorhora}${valorMinuto}${valorDia}${valorMes}${valorAno}`;
+    console.log(textPlain)
+    let hash = CryptoJS.AES.encrypt(textPlain, key);
+    document.querySelector('.valorHash').innerText = hash;
+    let hashDecripted = CryptoJS.AES.decrypt(hash.toString(), key);
+    console.log(hashDecripted.toString())
+
+    // console.log(hash.toString())
+
+    hora.innerHTML = `${valorhora}:${valorMinuto}`
+    data.innerHTML = `${valorDia}/${valorMes}/${valorAno}`
+    
+    
+    
+    
+    
+    
+    window.print();
+}
+
+</script>
+</html>

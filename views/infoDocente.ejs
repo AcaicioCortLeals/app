@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informação Docente</title>
+    
+    
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link rel="stylesheet" href="./css/cabecalho.css">
+    <link rel="stylesheet" href="./css/infoDocente/index.css">
+    
+
+
+</head>
+<body>
+    
+    <header class="cabecalho">
+        <img height="110px" src="./img/icon_sistema.png" alt="">
+    </header>
+
+    <div codigoDocente="<%= dadosProfessor.codigo_sistema_aca %>" class="bodyAppInfoDocente">
+        <h3 style="margin:8px 0 0 16px">Dados Docente</h3>
+        <section class="informacoesBasicas">
+
+            <span class="contentInfo">
+                <h4>Código sistema Acadêmico</h4>
+                <span class="contentValorInfo">
+                    <p class="valorInfo infoCodSistemaAcademico">  <%= dadosProfessor.codigo_sistema_aca %>  </p>
+                </span> 
+            </span>
+
+                <span class="contentInfo">
+                     <h4>nome</h4>
+                     <span class="contentValorInfo">
+                         <p class="valorInfo infoNome" > <%= dadosProfessor.nome %> </p>
+                     </span> 
+                </span>
+
+                
+                <span class="contentInfo">
+                    <h4>Titulação</h4>
+                    <span class="contentValorInfo">
+                        <p class="valorInfo infoEmail"><%= dadosProfessor.titulacao %></p>
+                </span> 
+                </span>
+
+                <span class="contentInfo">
+                    <h4>Carga Horária</h4>
+                    <span class="contentValorInfo">
+                        <p  class="valorInfo infoCH"><%= dadosProfessor.carga_horaria %></p>
+                </span> 
+                </span>
+
+                <span class="contentInfo">
+                    <h4>Efetivo</h4>
+                    <span class="contentValorInfo">
+                        <p class="valorInfo infoNome" > <%= dadosProfessor.codigoEfetivo %>   </p>
+                    </span> 
+               </span>
+
+               <span class="contentInfo">
+                <h4>PSS</h4>
+                <span class="contentValorInfo">
+                    <p class="valorInfo infoNome" > <%= dadosProfessor.codigoPSS %>   </p>
+                </span> 
+                </span>
+
+                <!-- <span class="contentInfo">
+                    <h4>matrícula</h4>
+                    <span class="contentValorInfo">
+                        <p class="valorInfo infoNome" > <%= dadosProfessor.matriculaEfetivo %> <%= dadosProfessor.PSS %>   </p>
+                    </span> 
+               </span> -->
+
+                
+
+               <!-- <span class="contentInfo">
+                    <h4>cpf</h4>
+                    <span class="contentValorInfo">
+                        <p class="valorInfo infoCPF">  <%= dadosProfessor.cpf %> </p>
+                    </span> 
+                </span> -->
+
+               
+
+                
+
+                <span class="contentInfo">
+                    <h4>E-mail</h4>
+                    <span class="contentValorInfo">
+                        <p class="valorInfo infoEmail"><%= dadosProfessor.email_particular %> </p>
+                    </span> 
+                </span>    
+                
+                <span class="contentInfo">
+                    <h4>Telefone</h4>
+                    <span class="contentValorInfo">
+                        <p class="valorInfo infoEmail"><%= dadosProfessor.telefone %></p>
+                </span> 
+                </span>
+
+                <!-- <span class="contentInfo">
+                    <h4>Gênero</h4>
+                    <span class="contentValorInfo">
+                        <p class="valorInfo infoEmail"><%= dadosProfessor.genero %></p>
+                </span> 
+                </span> -->
+
+            </section>
+
+        <section class="informacoesBasicas">
+                <span class="contentInfo">
+                    <h4>Unidade de vínculo</h4>
+                    <span class="contentValorInfo">
+                        <p class="valorInfo infoEmail"><%= dadosProfessor.nomeUnidade %> - <%= dadosProfessor.siglaUnidade %></p>
+                </span> 
+                </span>
+
+                <span class="contentInfo">
+                    <h4>Curso de vínculo</h4>
+                    <span class="contentValorInfo">
+                        <p class="valorInfo infoEmail"><%= dadosProfessor.nome_curso %></p>
+                </span> 
+                </span>
+
+
+                <span class="contentInfo">
+                    <h4>Função adicional</h4>
+                    <span class="contentValorInfo">
+                        <p class="valorInfo infoEmail"><%= dadosProfessor.funcaoEfetivo %> </p>
+                </span> 
+                </span>
+
+
+           </span>
+           
+               
+        </section>
+
+        <h3 style="margin:8px 0 0 16px">Turmas do Docente</h3>
+        <div class="listaLegenda">
+            <span class="legendaSpan"> <div style="background-color: #00804cff;" class="squareLegenda"></div> <p>Carga horária normal</p> </span>
+            <span class="legendaSpan"> <div style="background-color: gold;" class="squareLegenda"></div> <p>Carga horária excedente</p> </span>
+            <span class="legendaSpan"> <div style="background-color: crimson;" class="squareLegenda"></div> <p>Carga horária em falta</p> </span>
+        </div>
+        <!-- <section class="contentSelectTurmasDocente"> 
+            <div class="selectPeriodoTurma">
+                <p>2023/02</p>
+                <i class="uil uil-angle-left-b"></i>
+            </div>
+            <div class="contentTableTurmaInPeriodo">
+                <table>
+                    <thead>
+                        <tr><th>Unidade</th> <th>Curso</th>   <th>Mod. Oferta</th> <th>Turno</th> <th>cod.Compoente</th> <th>Nome Componente</th> <th>Período</th> <th>Ch total</th>  <th>Ch semanal</th> <th>Cod Turma</th> </tr>
+                    </thead>
+                    <tbody class="corpoTabela">
+
+                    </tbody>
+                </table>
+            </div>
+         </section> -->
+    </div>
+    
+    
+
+    
+    
+
+</body>
+<script defer>
+    
+    async function povoaCorpoTabela(data){
+    //    let corpoTabela =  document.querySelector('.corpoTabela')
+       let blackListPeriodo = [];
+ 
+       //separar os perídos
+       data.forEach((turma)=> {
+        if(blackListPeriodo.indexOf(turma.ano_semestre) === -1){
+            blackListPeriodo.push(turma.ano_semestre)
+        }else{
+        }
+       });
+
+       blackListPeriodo.forEach((semestre,index)=>{
+            //criar secao
+            let secao = document.createElement('section')
+            secao.classList.add('contentSelectTurmasDocente')
+            
+            //criar div do cabevcalho
+            let cabecalho =  `<div onclick="abretabelaabaixo(${index})" class="selectPeriodoTurma"> <p>${semestre}</p> <i class="uil uil-angle-left-b"></i> </div>`
+
+            //criando a tabela
+            let divContentTable = document.createElement('div') //criando a div que contem a tabela
+            divContentTable.classList.add('contentTableTurmaInPeriodo') //adiconando a classse à DIV
+            let tabela = document.createElement('table')
+            let cabecalhoTabela = ` <thead> <tr><th>Unidade</th> <th>Curso</th>   <th>Mod. Oferta</th> <th>Turno</th> <th>cod.Compoente</th> <th>Nome Componente</th> <th>Período</th> <th>Ch total</th>  <th>Ch semanal</th> <th>Cod Turma</th> <th>dia/hora aula</th> </tr> </thead>`
+            let corpotabela = document.createElement('tbody')
+
+           let linhas = ''; //reseta o conteudo de linhas a cada novo semestre
+
+
+        data.forEach((turma)=> {
+           
+            if(semestre == turma.ano_semestre ){
+                // console.log(turma)
+                linhas = linhas + `<tr> <td>${turma.unidadeSigla}</td> <td>${turma.nomeCurso}</td> <td>${turma.modOferta}</td> <td>${turma.turnoDesc}</td> <td>${turma.codigoDisciplina}</td> <td>${turma.nomeDisciplina}</td><td>${turma.periodoDisci}</td> <td>${turma.cargaSemestralDisci}</td> <td>${turma.cargaSemanalDisci}</td> <td>${turma.codigo_da_turma}</td> <td>${turma.sigla} [${turma.horario_entrada} - ${turma.horario_saida}] </td> </tr>`;
+            }
+            console.log(linhas)
+            corpotabela.innerHTML = linhas ;
+            tabela.innerHTML = cabecalhoTabela;
+            tabela.appendChild(corpotabela);
+            divContentTable.appendChild(tabela)
+            secao.innerHTML = cabecalho;
+            secao.appendChild(divContentTable);
+
+            document.querySelector('.bodyAppInfoDocente').appendChild(secao);
+
+       }); 
+       })
+       
+
+
+    }//fim do método
+
+    (async()=>{
+        console.log(document.querySelector('.bodyAppInfoDocente').getAttribute('codigoDocente'))
+        const dados =  JSON.stringify({ 'codigoDocente': parseInt(document.querySelector('.bodyAppInfoDocente').getAttribute('codigoDocente'))});
+        console.log(dados);
+
+       const linha_turma = await fetch('buscaTurmaDocente', {
+            method:'POST',
+            headers: {'Content-Type': 'application/json'},
+            body:dados,
+        }).then( async (retorno)=>{
+            const dataLinhas = await retorno.json()
+            console.log(dataLinhas)
+            return dataLinhas;
+        }).catch((err)=>{
+            console.log(err)
+        })
+
+        povoaCorpoTabela(linha_turma.turmasDocente)
+        somaCHSemestres()
+    })();
+
+
+    //função usada para revelar a tabela abaixo do semestre
+    function abretabelaabaixo(index){
+            document.querySelectorAll('.contentTableTurmaInPeriodo')[index].classList.toggle('active');
+            
+    }
+
+
+    //função para somar a ch de cada semestre 
+    function somaCHSemestres(){
+        const contentTables =  document.querySelectorAll('.contentTableTurmaInPeriodo');
+
+        contentTables.forEach((content,index)=>{
+            
+            let linhas = content.querySelectorAll('table tbody tr');
+            
+          
+            let arrayTurumaComponete = catalogarTurmas(linhas);
+            console.log(arrayTurumaComponete)
+            let totalHoraInPeriodo = 0;
+            linhas.forEach((linha,index)=>{
+                let horaturmaCurrent = linha.querySelectorAll('td')[8].outerText;
+                let currentTurma = linha.querySelectorAll('td')[9].outerText;
+                let currentComponente = linha.querySelectorAll('td')[4].outerText
+                // console.log(horaturmaCurrent);
+                // console.log(blackListComponeteCurricular.indexOf(linha.querySelectorAll('td')[4].outerText === -1), linha.querySelectorAll('td')[4].outerText, blackListComponeteCurricular )
+                // console.log(arrayTurumaComponete, currentTurma, currentComponente)
+                arrayTurumaComponete.forEach((elementoArray, index)=>{
+                  if(elementoArray[0] == currentTurma && elementoArray[1] == currentComponente ){
+                      totalHoraInPeriodo = totalHoraInPeriodo + parseInt(horaturmaCurrent);  
+                      arrayTurumaComponete.splice(index,1)
+                      console.log('achou')
+                      console.log( arrayTurumaComponete, currentTurma, currentComponente)
+
+                  }  
+                })
+
+                /*if(blackListComponeteCurricular.indexOf(linha.querySelectorAll('td')[4].outerText) === -1){
+                    blackListComponeteCurricular.push(linha.querySelectorAll('td')[4].outerText);
+                    totalHoraInPeriodo = totalHoraInPeriodo + parseInt(horaturmaCurrent);  
+                    blackListTurma.push(linha.querySelectorAll('td')[9].outerText);
+
+                }else{
+                    if(blackListTurma.indexOf(linha.querySelectorAll('td')[9].outerText) === -1){
+                        blackListTurma.push(linha.querySelectorAll('td')[9].outerText);
+                        totalHoraInPeriodo = totalHoraInPeriodo + parseInt(horaturmaCurrent);
+                    }
+                    
+                }*/
+            })
+            let divTotal = document.createElement('div');
+            divTotal.classList.add('linhaTotalInTable');
+            divTotal.innerText = `Carga horária total do docente: ${totalHoraInPeriodo}horas`;
+            content.appendChild(divTotal);
+
+            //fazer a verificação se a quantidade de horas condiz com a carga horária do docente
+            let seletorSemestre = document.querySelectorAll('.selectPeriodoTurma')[index]
+            let cargaDocenteVinculo = parseInt( document.querySelector('.infoCH').outerText );
+            if(cargaDocenteVinculo === 40 && totalHoraInPeriodo>=12 && totalHoraInPeriodo <=20 ){
+                seletorSemestre.style.backgroundColor = '#00804cff';
+                seletorSemestre.style.color = 'white';
+            }else if(cargaDocenteVinculo === 40 && totalHoraInPeriodo<12){
+                seletorSemestre.style.backgroundColor = 'crimson';
+                seletorSemestre.style.color = 'white';
+            }else if(cargaDocenteVinculo === 40 && totalHoraInPeriodo > 20){
+                seletorSemestre.style.color = 'white';
+                seletorSemestre.style.backgroundColor = 'gold';
+            }else if(cargaDocenteVinculo === 20 && totalHoraInPeriodo>=8 && totalHoraInPeriodo <=12 ){
+                seletorSemestre.style.color = 'white';
+                seletorSemestre.style.backgroundColor = '#00804cff';
+            }else if(cargaDocenteVinculo === 20 && totalHoraInPeriodo < 8){
+                seletorSemestre.style.color = 'white';
+                seletorSemestre.style.backgroundColor = 'crimson';
+            }else{
+                seletorSemestre.style.color = 'white';
+                seletorSemestre.style.backgroundColor = 'gold';
+            }
+        })
+    }
+
+
+    function catalogarTurmas(linhas){
+        let arrayTurumaComponete = [];
+        linhas.forEach((linha, index)=>{
+
+            console.log(linha.querySelectorAll('td')[9].outerText, linha.querySelectorAll('td')[4].outerText)
+            if(arrayTurumaComponete.toString().indexOf([linha.querySelectorAll('td')[9].outerText, linha.querySelectorAll('td')[4].outerText].toString()) === -1){
+                arrayTurumaComponete.push([linha.querySelectorAll('td')[9].outerText, linha.querySelectorAll('td')[4].outerText]);
+            }
+
+            /*if(index == 0){
+                arrayTurumaComponete.push([linha.querySelectorAll('td')[9].outerText, linha.querySelectorAll('td')[4].outerText])
+            }else{
+                arrayTurumaComponete.forEach((elementoTurmaComponete)=>{
+                    if(elementoTurmaComponete[0] == linha.querySelectorAll('td')[9].outerText &&  elementoTurmaComponete[1] == linha.querySelectorAll('td')[4].outerText){
+                        console.log(elementoTurmaComponete[0],linha.querySelectorAll('td')[9].outerText, elementoTurmaComponete[1], linha.querySelectorAll('td')[4].outerText )
+                    }else{
+                        arrayTurumaComponete.push([linha.querySelectorAll('td')[9].outerText, linha.querySelectorAll('td')[4].outerText])
+                    }
+                })
+            }*/
+        
+                
+            });
+
+            
+
+        return arrayTurumaComponete;
+    }
+    
+</script>
+</html>
+

@@ -1,0 +1,43 @@
+.infoProfessor{
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    width: 90%;
+}
+
+.itemInfoProfessor{
+    display: inline-flex;
+    align-items: center;
+    margin: 4px 7px ;
+    justify-content: flex-start;
+}
+
+.itemInfoProfessor p{
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.infoChDocente{
+    width: 90%  ;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 5px;
+}
+
+.infoChDocente span{
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.infoChDocente span p{
+    margin-left: 3px;
+}
+
+.valorStatusCH{
+    padding: 3px;
+    background-color: orange;
+}

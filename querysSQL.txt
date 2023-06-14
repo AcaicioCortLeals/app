@@ -1,0 +1,13 @@
+ query para buscar as disciplinas de um professor
+ POSSIVELMENTE SERÁ USADA JUNTO COM O CAMANDO DELETE PARA REMOVER UM PROFESSOR DE UMA DISCIPLINA 
+
+SELECT turma_docente.codigo, docente.nome, disciplina.codigo_disciplina , disciplina.nome, turma.codigo_turma FROM turma_docente
+inner join docente on docente.codigo = turma_docente.docente_codigo 
+inner join turma on turma.codigo = turma_docente.turma_codigo
+inner join disciplina_curso on disciplina_curso.codigo = turma.disciplina_curso_codigo 
+inner join disciplina on disciplina.codigo = disciplina_curso.disciplina_codigo
+left join turma_horario on turma_horario.turma_codigo = turma.codigo
+where docente.codigo_sistema_aca = 378;
+
+//CRIAR TABELA AUXILIAR PARA CONSULTAR AS UNIADDES FISICAS
+create table unidade_fisica select * from unidade;  

@@ -1,0 +1,164 @@
+.bodyAppInfoDocente{
+    margin-top: 10px;
+    width: 100%;
+}
+
+.informacoesBasicas{
+    width: 100%;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+}
+
+.contentInfo{
+    margin: 4px 4px ;
+    background-color: #004c80ff;
+    padding: 4px 8px;
+    height: 55px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: fit-content;
+    color: white;
+}
+
+.contentInfo:hover{
+    background-color: rgb(2, 56, 92);
+    /* color: #004c80ff;
+    border: 2px solid #004c80ff;
+    transform: sca; */
+}
+
+.contentInfo > h4{
+    font-size: 12px;
+    height: 15px;
+    font-style: italic  ;
+}
+
+.contentValorInfo{
+    width: 100%;
+    min-width: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100% - 15px);
+}
+
+.linha{
+    width: calc(100% - 22px);
+    margin: 5px auto;
+    height: 0.5px;
+    background-color: gray;
+}
+
+
+.contentSelectTurmasDocente{
+    width: calc(100% - 22px);
+    margin: 0 auto;
+    
+}
+
+
+.selectPeriodoTurma{
+    width: 100%;
+    background-color: rgb(225, 231, 235);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+    font-weight: 500;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.selectPeriodoTurma i{
+    transform: rotate(270deg);
+}
+
+.contentTableTurmaInPeriodo{
+    width: calc(100% - 5x);
+    margin: 5px auto;
+    /* background-color: rgb(2, 56, 92); */
+    height: 0;
+    padding-top: 5px;
+    overflow: hidden;
+    transition: all ease-in-out;
+}
+
+.contentTableTurmaInPeriodo.active{height: auto;}
+
+.contentTableTurmaInPeriodo table{
+    width: 100%;
+    border-collapse: collapse;
+    
+}
+
+.contentTableTurmaInPeriodo table tr{
+    height: 45px;
+}
+
+
+
+.contentTableTurmaInPeriodo table thead{
+    background-color: #ebe7e7;
+    color: black;
+}
+
+.contentTableTurmaInPeriodo table tbody tr{
+    background-color: #f5f5f5;
+    border-top: 1px solid black;
+    color: black;
+}
+
+.contentTableTurmaInPeriodo table tbody tr:hover{
+    background-color: lightgray;
+    font-weight: bold;
+}
+
+.contentTableTurmaInPeriodo table tbody tr td{
+    text-align: center;
+}
+
+.linhaTotalInTable{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    margin-top: 4px;
+    font-weight: bolder;
+    
+}
+
+.listaLegenda{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start ;
+    margin-left: 16px;
+    width: calc(100% - 16px);
+}
+
+.legendaSpan{
+    width: 300px;
+    height: 70px;
+    margin: auto 7px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.squareLegenda{
+    width: 20px;
+    height: 20px;
+    border: 0;
+
+}
+
+.squareLegenda ~ p{
+    margin-left: 5px;
+}

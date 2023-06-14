@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="nomeCurso"><%= curso %></title>
+
+    <link rel="stylesheet" href="./css/curso/index.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+    <link rel="stylesheet" href="./css/cabecalho.css">
+    <link rel="stylesheet" href="./css/relatoriosPage01.css">
+    <link rel="stylesheet" href="./css/relatorio_matriz_ocupacional.css">
+  
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="./js/index.js" defer></script>
+
+</head>
+
+<body>
+
+    <header class="cabecalho">
+        <img height="110px" src="./img/icon_sistema.png" alt="">
+    </header>
+    <div class="wrapingApp">
+        <div class="leftBar">
+            <span onclick="toggleBarLeft()" class="btnFecharBarra"> <p style="font-size: 14px;">Esconder</p> <i class="uil uil-angle-left-b"></i></span>
+            <span onclick="irToHome()" class="optionBar"> <p style="font-size: 14px;">Início</p> <i class="uil uil-home"></i></span>
+            <span class="optionBar">Opção 01</span>
+            <span class="optionBar">Opção 01</span>
+            <span class="optionBar">Opção 02</span>
+            <span class="optionBar">Opção 03</span>
+            <span class="optionBar">Opção 04</span>
+            <span class="optionBar">Opção 05</span>
+            <span class="optionBar">Opção 06</span>
+            <span class="optionBar">Opção 07</span>
+            <a style="font-style: none; text-decoration: none;" class="spanOptionRelatorio" href="./relatorios"> <img src="./img/icon_relatorios.png" style="margin-right: 5px;" width="15px" alt=""> Relatórios</a>
+        </div>
+        <div  onclick="toggleBarLeft()" class="menuleftbar"><i class="uil uil-draggabledots"></i></div>
+
+        <div class="bodyappRelatorios">
+            <div class="principalRelatorios">
+
+                <span class="titlePage01Relatorio">
+                    <span class="marcadorTitle"></span> <h3>Professores do curso de <%= curso %></h3>
+                </span>
+                <p style="margin-left: 40px;">relatorio de professores por curso</p>
+                <div class="contentCardInoCurso" >
+
+                    <span class="cardInfoCurso"> 
+                        <h4>Ensino</h4>
+                        <p> <%= mEnsino %> </p>
+                    </span>
+                    
+
+                    <span class="cardInfoCurso"> 
+                        <h4>Oferta</h4>
+                        <p> <%= mOferta %> </p>
+                    </span>
+                    
+
+                    <span class="cardInfoCurso"> 
+                        <h4>Curso</h4>
+                        <p > <%= mCurso %> </p>
+                    </span>
+
+                    <span class="cardInfoCurso"> 
+                        <h4>Unidade Física</h4>
+                        <p> <%= Ufisica %> </p>
+                    </span>
+
+                    <span class="cardInfoCurso"> 
+                        <h4>Unidade Responsável</h4>
+                        <p> <%= Uresponsavel %> </p>
+                    </span>
+
+                </div>
+                
+                <div style="display: inline-flex; margin:5px 0 5px 5px;"> <span title="imprimir tabela" onclick="createWindowPrint()" class="buttonOptionsTabela" ><i class="uil uil-print"></i></span>  <span title="downlaod tabela" onclick="downloadCSV()" class="buttonOptionsTabela" ><i class="uil uil-file-download"></i></span> </div>
+                
+                <div style="display: inline-flex; margin:5px 0 5px 5px;"><p>Há <p style="margin: 0 4px; font-weight: bold;" id="numProfessores"></p> professores neste curso </p></div>
+                <span style="width:98%" class="linhaSeparadora"></span> 
+
+                <div class="contentListaProfessores">
+                    
+                        <% professores.forEach((professor, index) => { %>
+                            <div onclick="abrirMaisInfo(this, <%= index %> )" class="listElementProfessor"> <div class="infoProfessores"> <span class="contentInfoSituacaoProfessor"> <span class="botaoPulse<%= professor.situacao_funcional_codigo%> animationPulse<%= professor.situacao_funcional_codigo%> "> </span> <p class="cor<%= professor.situacao_funcional_codigo%>" > <%= professor.situacaoEfetivo%>  </p>  </span>  <p style="font-weight: bolder;" class="texto_info_lista"> <%= professor.nomeDocente %></p> <p style="margin: 0 10px;">|</p>  <p class="texto_info_lista" > <%= professor.titulacaoDocente%> </p> <p style="margin: 0 10px;">|</p> <p class="texto_info_lista"><%= professor.email%> </p>    </div>  <span> <i style="font-size: 20px;" class="uil uil-angle-down"></i> </span>  </div>
+                            <div class="moreInfoTeacher">
+                                <% if(professor.matriculaEfetivo ){ %>
+                                <span> <h5>Efetivo (matrícula):</h5>  <p> <%= professor.matriculaEfetivo%> </p> </span>
+                                  <% } else{ %>  
+                                <span> <h5>PSS (matrícula):</h5>  <p> <%= professor.matriculaPSS%> </p> </span>
+                                 <% } %>
+                                <span> <h5>Telefone:</h5>  <p> <%= professor.telefoneDocente%> </p> </span>
+                                <span> <h5>Unidade de vínculo:</h5>  <p> <%= professor.nomeUnidade%> </p> </span>
+                                <span> <h5>Código S.A: </h5>  <p> <%= professor.codigo_SA%> </p> </span>
+                               
+                                <% if(professor.funcao){ %>
+                                    <span> <h5>Função adcional: </h5>  <p> <%= professor.funcao%> </p> </span>
+                                      <% } else{ %>  
+                                    <span> <h5>Função adcional: </h5>  <p> <%= professor.funcaoPSS%> </p> </span>
+                                <% } %>
+                                     
+                            </div>
+                        <% }) %>
+                    
+                </div>
+
+
+                <!-- DIV PARA GUARDAR A TABELA QUE SERÁ USADA PARA DOWNLAOD NO FORMATO CSV E PARA IMPRIMIR EM PDF -->
+                <div class="tableCompletedValores">
+                    <div class="headerPrint"> <img src="./img/logo_prograd_verde.svg" width="170px" alt="marca_prograd"> <h3 stlye="display:inline-flex" > Professores do curso de </h3> <h3 id="titlePagePrint"></h3> <script> document.getElementById('titlePagePrint').innerText = document.getElementById('titlePagePrint').outerText + document.querySelector('#nomeCurso').outerText</script>   </div>
+                    <span > <h5>Curso:</h5> <p><%= curso %></p> </span>
+                    <div style="width:100%; margin:5px 0; height: 1px; background-color: gray;"></div>
+                    <span > <h5>Unidade Física:</h5> <p><%= Ufisica %></p> </span>
+                    <div style="width:100%; margin:5px 0; height: 1px; background-color: gray;"></div>
+                    <span > <h5>Unidade Responsável:</h5> <p><%= Uresponsavel %></p> </span>
+                    <div style="width:100%; margin:5px 0; height: 1px; background-color: gray;"></div>
+                    <span > <h5>Modalidade de Ensino:</h5> <p><%= mEnsino %></p> </span>
+                    <div style="width:100%; margin:5px 0; height: 1px; background-color: gray;"></div>
+                    <span > <h5>Modalidade de Oferta:</h5> <p><%= mOferta %></p> </span>
+                    <div style="width:100%; margin:5px 0; height: 1px; background-color: gray;"></div>
+                    <span > <h5>Modalidade de Curso:</h5> <p><%= mCurso %></p> </span>
+                    <div style="width:100%; margin:5px 0; height: 1px; background-color: gray;"></div>
+
+                    <table class="tableCompletedValoresTable">
+                        <thead>
+                            <tr> <th>nº</th> <th>Curso</th> <th>Código_s.a</th> <th>Efetivo</th> <th>PSS</th> <th>Docente</th> <th>Titulação</th> <th>E-mail</th>  <th>Função_extra</th> </tr>
+                        </thead>
+                        <tbody>
+                            <% professores.forEach((professor, index) => { %>
+                                <tr>
+                                     <td> <%=index +1 %></td> 
+                                     <td><%= curso %></td> 
+                                     <td><%= professor.codigo_SA%></td> 
+                                     <td><%= professor.matriculaEfetivo%></td> 
+                                     <td><%= professor.matriculaPSS%></td> 
+                                     <td><%= professor.nomeDocente%></td> 
+                                     <td><%= professor.titulacaoDocente%></td> 
+                                     <td><%= professor.email%></td> 
+                                     <% if(professor.funcao){ %>
+                                        <td> <%= professor.funcao%></td>
+                                          <% } else{ %>  
+                                        <td> <%= professor.funcaoPSS%></td>
+                                    <% } %>
+                                     
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+
+               
+                
+                
+            </div>
+            <div class="footer"><img src="./img/logoPrograd.png" height="30px" alt="logo-prograd"></div>
+        </div>
+           
+    </div>
+
+   
+
+</body>
+<script defer>
+    
+    function abrirMaisInfo(elemento, indice){
+        document.querySelectorAll('.moreInfoTeacher')[indice].classList.toggle('active');
+    }
+
+    window.onload = function(){
+        document.querySelector('#numProfessores').innerText = document.querySelectorAll('.listElementProfessor').length
+    }
+
+    function createWindowPrint(){
+
+        let sTable = document.querySelector('.tableCompletedValores').outerHTML;
+        let cabecalho =  document.querySelector('.headerPrint').outerHTML;;
+        let style = `
+        *{
+            font-family:'calibri';
+        }
+
+        .headerPrint{
+            width:100%;
+            display:flex;
+            align-items:center;
+            flex-direction:column;
+            justify-content:center;
+        }
+
+        .headerPrint h3, .headerPrint p{
+            margin:2px auto;
+        }
+
+        .tableCompletedValores{
+            width: 90%;
+            margin:0 auto;
+            display:flex;
+            flex-direction:column;
+            padding: 7px;
+        }
+
+        .tableCompletedValores >span{
+            display: inline-flex;
+            align-items:baseline;
+            height:35px;
+            margin: 2px 0 0 5px;
+        }
+
+        .tableCompletedValores >span p{
+            margin-left:5px;
+        }
+        
+        .tableCompletedValoresTable{
+            border-collapse: collapse;
+            width: 99%;
+            margin: 10px auto;
+        }
+
+        .tableCompletedValoresTable tbody tr{
+            border-top:1px solid gray;
+            font-size: 13px;
+            text-align: center;
+            height:37px;
+        } 
+        
+        .tableCompletedValoresTable tbody tr:nth-child(2n+1){
+            background-color: #f2f2f2; 
+        } 
+        `
+        // CREATE A WINDOW OBJECT.
+        const win = window.open('', '','height=700,width=700');
+
+        win.document.write('<html><head>');
+        win.document.write('<title>Lista de Professores</title>');   // <title> FOR PDF HEADER.
+        win.document.write(`<style> ${style}</style>`);          // ADD STYLE INSIDE THE HEAD TAG.
+        win.document.write('</head>');
+        win.document.write('<body>');
+        // win.document.white(cabecalho);            
+        win.document.write(sTable);         // THE TABLE CONTENTS INSIDE THE BODY TAG.
+        win.document.write('</body></html>');
+
+        
+        win.document.close(); 	// CLOSE THE CURRENT WINDOW.
+            
+        win.print();    // PRINT THE CONTENTS.
+    }
+
+    function downloadCSV(){
+
+        /*computa os dados da tabela para CSV*/
+        let Table = document.querySelector('.tableCompletedValores');
+
+        let data = [];
+        let rows = Table.querySelectorAll('tr');
+        //cabecalho
+            let celulaROw = rows[0].querySelectorAll('th');
+            let rowCSV = [];
+            celulaROw.forEach( (cel)=>{
+                console.log(cel)
+                rowCSV.push(cel.outerText);
+            });
+            data.push(rowCSV.join(','));
+            data.push('\n');
+ 
+
+        rows.forEach((row)=>{
+        
+            let celulaROw = row.querySelectorAll('td');
+            let rowCSV = [];
+            celulaROw.forEach( (cel)=>{
+                console.log(cel)
+                rowCSV.push(cel.outerText);
+            });
+
+        data.push(rowCSV.join(','));
+        data.push('\n');
+        // console.log(data)
+        })
+
+
+        /*constroi o arquivo BLOB para fazer o downlaod*/
+        let csvFile = new Blob(["\uFEFF"+data], {type:'text/csv'});
+        // console.log(csvFile);
+        let url = window.URL.createObjectURL(csvFile);
+        window.open(url, '');
+    }
+
+</script>
+</html>
+
+
+
+        
+        
+       

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <script src="./plugins/mask/src/jquery.mask.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            box-sizing: border-box;
+        }
+
+
+        .wrappingLogin{
+            width: 100vw;
+            height: 100vh;
+            background-image: url('./img/fundo_login.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+        }
+        .loginForm{
+            width: 300px;
+            height: 350px;
+            /* background-color: rgba(255, 255, 255, 0.37); */
+            /* border: 1px solid rgba(218, 218, 218, 0.699) ; */
+            background-color: rgba(255, 255, 255, 0.61);
+            margin: auto;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 0 7px -1px rgb(88, 87, 87);
+
+        }
+
+        .LoginIn{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .titleModal{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80px;
+        }
+
+        .corpoLogin{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contentinput{
+            margin-top: 10px ;
+            width: 250px;
+        }
+
+        .contentinput i{
+            font-size: 21px;
+        }
+
+        .contentinput input{
+            width: 200px;
+            height: 36px;
+            background-color: transparent;
+            border: none;
+            border-bottom: 1.6px solid black;
+            outline: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding-left: 5px;
+        }
+        .contentinput input::placeholder{
+            color: black;
+        }
+
+        .contentinput input:valid{
+            /* border-color: #00804c  */
+        }
+
+        .buttonlogin{
+            width: 220px;
+            margin: auto;
+            margin-top: 20px;
+            height: 34px;
+            background-color: black;
+            color: white;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all ease-in .2s;
+        }
+
+        .buttonlogin:hover{
+            background-color: transparent;
+            border: 1.5px solid black;
+            color: black;
+            font-weight: 600;
+        }
+
+        .buttonlogin i{
+            position: absolute;
+            margin-left: 70px;
+            transition: all ease-in .4s;
+        }
+
+        .buttonlogin p{
+            transition: all ease-in .4s;
+        }
+
+        .buttonlogin:hover i{
+            margin-left: 150px;
+        }
+
+        .optionsLogin{
+            width: 100%;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .optionsLogin a{
+            text-decoration: none;
+            font-weight: 500;
+            color: black;
+        }
+        
+        .optionsLogin a:hover{
+            font-weight: 600;
+            color: #00804c;
+        }
+
+        .alert{
+            display: block;
+            position: absolute;
+            left: calc(50% - 145px);
+            font-size: 14px;
+            z-index: 1;
+            margin: auto;
+            margin-top: 30px;
+            width: 290px;
+            height: 50px;
+            background-color: rgba(238, 10, 10, 0.76);
+            color: white;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+           transition: all 1s 2s ease-in-out;
+        }
+
+       
+
+    </style>
+
+</head>
+<body>
+
+    <div class="alert"> <i style="font-size: 27px;" class="uil uil-info-circle"></i> <p id="msg" > <%= msg %> </p></div>
+    
+    <form action="" method="post"></form>
+    
+    <div class="wrappingLogin">
+        <div class="loginForm">
+            <div class="LoginIn">
+                <span class="titleModal"> <h2 style="font-size: 20px;">Login</h2> </span>
+                <form action="validate" id="form" method="POST" enctype="application/x-www-form-urlencoded" class="corpoLogin">
+                    <span class="contentinput">
+                        <i class="uil uil-user-circle"></i>
+                        <input id="cpf" name="cpf" placeholder="informe o cpf" type="text">
+                    </span>
+                    <span class="contentinput">
+                        <i class="uil uil-keyhole-circle"></i>
+                        <input  id="senha" name="senha" placeholder="senha" type="password">
+                    </span>
+
+                    <span class="buttonlogin"> <p>Entrar</p> <i  class="uil uil-message"></i></span>
+
+                </form>
+
+                <div class="optionsLogin">
+                    <a href="">Esqueceu a senha?</a>
+                    <a href="">Cadastrar-se</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+</body>
+
+<script>
+
+
+    $(document).ready(function(){
+        $('#cpf').mask('000.000.000-00', {reverse: true});
+    })
+
+    document.querySelector('.buttonlogin').addEventListener('click', (e)=>{
+        e.preventDefault();
+        let cpf = document.querySelector("#cpf").value;
+        let senha = document.querySelector("#senha").value;
+        if(cpf === '' || cpf == null){
+            alert('informe o CPF')
+            return
+        }
+        else if(senha === '' || senha == null){
+            alert('informe a senha')
+        }else{
+            let formulario = document.querySelector("#form");
+            formulario.submit();
+        }
+
+        /*fetch('/validate',{
+            method: "POST",
+            body: JSON.stringify({cpf:cpf, senha:senha}),
+            headers:{"Content-type":"application/json;charset=UTF-8"}
+        })*/
+        
+
+    });
+
+    function esmarecer(){
+            let msg = document.querySelector('#msg').outerText;
+            if(msg == "" || msg == null || msg == undefined){
+                document.querySelector('.alert').style.display = 'none';
+            }else{
+                document.querySelector('.alert').style.opacity = 0;
+                setTimeout(()=>{
+                    document.querySelector('.alert').style.display = 'none';
+
+                },3000)
+            }
+        };
+
+    esmarecer();
+</script>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matriz Ocupacional - UEA</title>
+    <link rel="stylesheet" href="./css/matriz_ocupacional.css">
+    <link rel="stylesheet" href="./css/matriz_docente.css">
+    
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+
+    <header class="cabecalhoRelatorioMatriz">
+            <div><img src="./img/logo_prograd_verde.svg" width="150px" alt="logo_prograd" title="logo_prograd"></div>
+            <h3 style="font-size:18px; margin-top: 3px;">Universidade do Estado do Amazonas</h3>
+
+            <span style="display: flex; margin-top: 3px;">
+                <!-- <i class="uil uil-user"></i> <h5>Coordenação </h5> <p style="margin-left: 3px;"> Medicina  </p> -->
+            </span>
+
+            </div>
+
+            <div class="linhaSeparadoraMatriz"></div>
+
+            <div class="dataImpressao">
+                <span style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <i class="uil uil-clock"></i>
+                    <p class="valorHoraImpressao"></p>
+                </span>
+                <span style="display: flex; flex-direction: column; align-items: center; justify-content: center;" >
+                    <i class="uil uil-calendar-alt"></i>
+                    <p class="valorDataImpressao"></p>
+                </span>
+                <span style="display: flex; flex-direction: column; align-items: center; justify-content: center;" >
+                    <i class="uil uil-lock-access"></i>
+                    <p class="valorHash"></p>
+                </span>
+            </div>
+
+            <!-- <div class="linhaSeparadoraMatriz"></div> -->
+
+            <div class="infoProfessor">
+                <span class="itemInfoProfessor">
+                    <h5>Nome</h5>
+                    <p>Dolores Fuertes de Barriga</p>
+                </span>
+                <span class="itemInfoProfessor">
+                    <h5>Cod. Sist. Acad.</h5>
+                    <p>20384</p>
+                </span>
+                <span class="itemInfoProfessor">
+                    <h5>Vínculo</h5>
+                    <p>Efetivo</p>
+                </span>
+                <span class="itemInfoProfessor">
+                    <h5>Status</h5>
+                    <p>-</p>
+                </span>
+                <span class="itemInfoProfessor">
+                    <h5>Função Gratificada</h5>
+                    <p></p>
+                </span>
+                <span class="itemInfoProfessor">
+                    <h5>Coordenador de Curso</h5>
+                    <p>Não Coordena curso</p>
+                </span>
+                <span class="itemInfoProfessor">
+                    <h5>Carga Horaria</h5>
+                    <p>40h</p>
+                </span>
+                <span class="itemInfoProfessor">
+                    <h5>Curso de Lotação</h5>
+                    <p>Meteorologia</p>
+                </span>
+                <span class="itemInfoProfessor">
+                    <h5>Unidade de Lotação</h5>
+                    <p>Escola de Tecnologia</p>
+                </span>
+                <span class="itemInfoProfessor">
+                    <h5>Curso de Lotação</h5>
+                    <p>Dolores Fuertes de Barriga</p>
+                </span>
+                <span class="itemInfoProfessor">
+                    <h5>Telefone</h5>
+                    <p>(92)98823-0420</p>
+                </span>
+                <span class="itemInfoProfessor">
+                    <h5>e-mail</h5>
+                    <p>lucaspiques7@gmail.ccom</p>
+                </span>
+            </div>
+
+            <div class="linhaSeparadoraMatriz"></div>
+
+            <div class="infoChDocente">
+                <span><h5>Soma da C.h:</h5> <p>9</p> <p> horas</p></span>
+                <span><h5>Status C.h:</h5> <p class=" valorStatusCH emfalta ">em falta</p></span>
+                <span><h5>Observações</h5> <p>sem observações</p></span>
+            </div>
+
+
+            <div class="cantentBtnsHeaderTable" >
+                <span onclick="imprimirMatrizOcupacional()">
+                    <img width="25px" src="./img/iconimpressao.svg" title="imprimir matriz" alt="icon_impressora">
+                    <p>imprimir</p>
+                </span>
+ 
+            </div>
+
+
+            <div class="contentTable">
+                <table id="tabelaMatrizOcupacional">
+                    <thead> <tr> <th>Cod. Turma</th> <th>Componente Curricular</th> <th>Período</th> <th>C.h Disciplina</th> <th>C.h semanal</th> <th>C.h total</th> <th>Turno</th>  <th>Horário</th> <th>Curso</th> <th>Unidade</th>   </thead>
+                    <tbody>
+                        <tr class="linhaExcesso"> <td>EN1504</td> <td>Fisiologia</td> <td>2º</td> <td>90h</td> <td>9h</td> <td>9</td> <td>Matutino</td> <td>Seg | 08:00 - 12:00 <br> Ter | 09:30 - 10:00 </td> <td >Medicina</td> <td>Escola Superior de Ciências da Saúde - ENS</td> </tr>
+                        
+                        
+                    </tbody>
+                </table>
+            </div>
+    </header>
+    
+</body>
+<script defer>
+
+
+
+    function imprimirMatrizOcupacional(){
+       
+    
+    let hora = document.querySelector('.valorHoraImpressao'); 
+    let data = document.querySelector('.valorDataImpressao');
+    let dataAtual = new Date();
+    
+    let valorhora = dataAtual.getHours();
+    if(parseInt(valorhora)<10){
+        valorhora = '0'+valorhora;
+    }
+    let valorMinuto = dataAtual.getMinutes();
+    if(parseInt(valorMinuto)<10){
+        valorMinuto = '0'+valorMinuto;
+    }
+    let valorDia = dataAtual.getDate()
+    if(parseInt(valorDia)<10){
+        valorDia = '0'+valorDia;
+    }
+    let valorMes = dataAtual.getMonth()
+    if(parseInt(valorMes)<10){
+        valorMes = '0'+valorMes;
+    }
+    let valorAno = dataAtual.getFullYear()
+    
+    let key = '123456'
+    let textPlain = `${valorhora}${valorMinuto}${valorDia}${valorMes}${valorAno}`;
+    console.log(textPlain)
+    let hash = CryptoJS.AES.encrypt(textPlain, key);
+    document.querySelector('.valorHash').innerText = hash;
+    let hashDecripted = CryptoJS.AES.decrypt(hash.toString(), key);
+    console.log(hashDecripted.toString())
+
+    // console.log(hash.toString())
+
+    hora.innerHTML = `${valorhora}:${valorMinuto}`
+    data.innerHTML = `${valorDia}/${valorMes}/${valorAno}`
+    
+    
+    
+    
+    
+    
+    window.print();
+}
+
+</script>
+</html>
